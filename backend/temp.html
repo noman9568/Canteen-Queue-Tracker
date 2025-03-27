@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>Web Socket</h1>
+  <input type="text" id="message1" placeholder="Enter Message"/>
+  <button id="send">Send</button>
+  <div id="messageBox"></div>
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    const socket = io();
+    const sendbtn = document.getElementById('send');
+    const messageInput = document.getElementById('message1');
+    const messageB = document.getElementById('messageBox');
+
+    socket.on('message',message=>{
+      console.log("New message arrived - ",message)
+      
+      const p = document.createElement("p");
+      p.innerText = message
+      messageB.appendChild(p)
+      
+    })
+
+    sendbtn.addEventListener('click',e=>{
+      const message = messageInput.value;
+      // console.log(message)
+      socket.emit('user-message',message)
+    })
+  </script>
+</body>
+</html>

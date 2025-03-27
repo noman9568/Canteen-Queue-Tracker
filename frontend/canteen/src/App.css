@@ -1,0 +1,183 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+#root {
+  margin: 0 auto;
+  width: 100vw;
+  padding: 0 1.5rem;
+  min-height: 100vh;
+  text-align: center;
+  background: linear-gradient(135deg, #d8eaff, #edfbff);
+}
+
+
+nav{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 1.45rem;
+  font-size: 1.2rem;
+  justify-content: space-between;
+  margin: 1rem 0;
+  font-family: "Montserrat",sans-serif;
+}
+nav Logo{
+  font-size: 2rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.nav-logo{
+  font-size: 2.5rem;
+  /* border: 1px solid; */
+  padding: 0.3rem;
+  border-radius: 50%;
+  background-color: rgb(0, 0, 193);
+  color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+}
+nav navbar{
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  justify-content: flex-end;
+  /* width: 50%; */
+}
+.admin-dashboard{
+  width: max-content;
+}
+html{
+  font-size: 14px;
+}
+
+.cart-icon{
+  display: flex;
+  justify-content: center;
+}
+.cart-icon a{
+  color: rgb(16, 23, 98);
+}
+.cart-count{
+  position: relative;
+  top: -8px;
+  right: -3px;
+  color: white;
+  background-color: red;
+  border-radius: 50%;
+  height: 1.5rem;
+  width: 1.5rem;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sidebar{
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 234px;
+  padding-top: 1rem;
+  padding-left: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background-color: rgb(16, 23, 98);
+  font-weight: 500;
+  color: white;
+  z-index: 999;
+  transition: all 0.5s ease-in-out
+}
+.sidebar-header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 0.8rem;
+  margin-bottom: 0.5rem;
+  border-bottom: 2px solid white;
+  padding-right: 0.2rem;
+}
+.sidebar-header span{
+  display: flex;
+  /* align-items: center; */
+  gap: 0.5rem;
+}
+.sidebar-header .logo{
+  font-size: 1.7rem;
+  border: 1px solid;
+  padding: 0.25rem;
+  border-radius: 6px;
+  color: rgb(16, 23, 98);
+  background-color: white;
+}
+.sidebar-logo{
+  padding: 0.35rem;
+  border-radius: 50px;
+  color: rgb(24, 32, 123);
+  font-size: 1.5rem;
+  background-color: rgb(230, 248, 255);
+}
+
+.sidebar a{
+  text-align: start;
+  color: rgb(228, 228, 228);
+}
+.sidebar a{
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.sidebar-icons{
+  padding: 0.3rem;
+  border-radius: 2px;
+  color: rgb(16, 23, 98);
+  background-color: whitesmoke;
+}
+
+.menu-btn{
+  font-size: 1.3rem;
+  /* font-weight: bolder; */
+  display: flex;
+  align-items: center;
+  
+  padding: 0.4rem 0.8rem;
+}
+
+
+@media (max-width : 725px) {
+  nav navbar{
+    gap: 1.5rem;
+  }
+  .admin-dashboard{
+    /* width: min-content; */
+    line-height: 1;
+  }
+}
+@media (max-width:575px) {
+  html{
+    font-size: 13px;
+  }
+  nav logo{
+    font-size: 1.8rem;
+  }
+  .nav-logo{
+    font-size: 2rem;
+  }
+}
+@media (max-width:425px) {
+  html{
+    font-size: 12px;
+  }
+  .menu-btn{
+    padding: 0.35rem 0.7rem;
+  }
+  #root{
+    padding: 0 1rem;
+  }
+  nav navbar{
+    gap: 1rem;
+  }
+}
+
+

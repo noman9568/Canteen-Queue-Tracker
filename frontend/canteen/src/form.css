@@ -1,0 +1,211 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+.formContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  background-color: #eff4ff;
+  padding: 1rem;
+  flex-direction: column;
+}
+
+.Form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  background-color: rgb(239, 239, 239);
+  border: none;
+  padding: 2.5rem;
+  width: 100%;
+  max-width: 420px;
+  border-radius: 12px;
+  font-family: "Raleway", sans-serif;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.Form:hover {
+  transform: translateY(-5px);
+}
+
+.Form h1 {
+  margin: 0;
+  color: #333;
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.form-subtitle {
+  margin: -0.75rem 0 0.5rem;
+  color: #666;
+  font-family: "Quicksand", sans-serif;
+  font-size: 1rem;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.input-group label {
+  font-size: 1rem;
+  text-align: start;
+  margin-left: 0.1rem;
+  font-weight: 600;
+  color: #444;
+}
+
+.Form input {
+  /* width: 100%; */
+  padding: 0.75rem 1rem;
+  font-size: 1.1rem;
+  font-family: "Quicksand", sans-serif;
+  border: 2px solid #e0e7ff;
+  background-color: #f8fafc;
+  color: #333;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.Form input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  background-color: white;
+}
+
+.Form input::placeholder {
+  color: #9ca3af;
+}
+
+input:-webkit-autofill {
+  transition: background-color 5000s ease-in-out 0s;
+  -webkit-text-fill-color: #333 !important;
+}
+
+.error-message {
+  background-color: #fee2e2;
+  color: #b91c1c;
+  padding: 0.75rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  border-left: 4px solid #ef4444;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.5rem;
+}
+
+.register-actions {
+  flex-direction: column;
+  gap: 1rem;
+  align-items: stretch;
+}
+
+.loginButton, .registerButton {
+  font-family: "Quicksand", sans-serif;
+  background-color: #3b82f6;
+  color: white;
+  font-weight: 600;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 120px;
+}
+
+.registerButton {
+  width: 100%;
+  background-color: #4f46e5;
+}
+
+.loginButton:hover:not(:disabled), .registerButton:hover:not(:disabled) {
+  background-color: #2563eb;
+  transform: scale(1.03);
+}
+
+.registerButton:hover:not(:disabled) {
+  background-color: #4338ca;
+}
+
+.loginButton:disabled, .registerButton:disabled {
+  background-color: #93c5fd;
+  cursor: not-allowed;
+}
+
+.registerButton:disabled {
+  background-color: #a5b4fc;
+}
+
+.forgotpwd {
+  color: #3b82f6;
+  font-size: 0.95rem;
+  cursor: pointer;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.forgotpwd:hover {
+  color: #1d4ed8;
+  text-decoration: underline;
+}
+
+.login-link {
+  text-align: center;
+  margin: 0;
+  font-size: 0.9rem;
+  color: #6b7280;
+}
+
+.login-link a {
+  color: #4f46e5;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.login-link a:hover {
+  color: #4338ca;
+  text-decoration: underline;
+}
+
+/* Display the error outside the form in mobile view */
+formContainer > h2 {
+  margin-top: 1rem;
+  color: #ef4444;
+  font-size: 1rem;
+  text-align: center;
+}
+@media (max-width:625px) {
+  .Form{
+    max-width: 400px;
+  }
+  .input-group label{
+    font-size: 1.1rem;
+  }
+}
+@media (max-width: 500px) {
+  .Form {
+    padding: 2rem 1rem;
+  }
+  
+  .form-actions {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: stretch;
+  }
+  
+  .loginButton {
+    width: 100%;
+  }
+  
+  .forgotpwd {
+    text-align: center;
+  }
+}

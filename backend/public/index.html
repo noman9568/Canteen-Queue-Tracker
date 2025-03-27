@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebSocket Test</title>
+</head>
+<body>
+    <h1>WebSocket Chat</h1>
+    <input type="text" id="messageInput" placeholder="Type a message..." />
+    <button onclick="sendMessage()">Send</button>
+    <button onclick="join()">Join Queue</button>
+    <button onclick="next()">Next Turn</button>
+    <ul id="messages"></ul>
+    <ul id="queue"></ul>
+
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-messaging.js"></script>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const socket = io("http://localhost:5000"); // Connect to WebSocket server
+
+        socket.on("connect", () => {
+            console.log("Connected:", socket.id);
+        });
+
+        socket.on("message", (data) => {
+            const li = document.createElement("li");
+            li.textContent = data;
+            document.getElementById("messages").appendChild(li);
+        });
+
+        function sendMessage() {
+            const input = document.getElementById("messageInput");
+            socket.emit("message", input.value); // Send message to server
+            input.value = ""; // Clear input field
+        }
+        function join() {
+            const data = {
+                "name" : "John Doe",
+                "fcmtoken" : "sample-fcm-token-3"
+            }
+            socket.emit("joinQueue",data);
+        }
+        socket.on("updatedQueue",users=>{
+            const queue = document.getElementById("queue");
+            queue.innerHTML = ''
+
+            users.forEach(user => {
+                const li = document.createElement("li");
+                li.textContent = user.name + " |- " + user.status;
+                queue.appendChild(li)
+            });
+            // console.log(users);
+            
+        })
+        function next() {
+            socket.emit("nextturn");
+        }
+    </script>
+</body>
+</html>

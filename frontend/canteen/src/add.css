@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+  --primary-color-light: #3b82f6;
+  --background-color: #f5f5f5;
+  --text-color-dark: #1f2937;
+  --text-color-light: #6b7280;
+  --border-color: #d1d5db;
+  --white: #ffffff;
+}
+
+.add-container {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--background-color);
+  font-family: 'Inter', sans-serif;
+  padding: 1rem;
+}
+
+/* .input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+} */
+
+.addForm{
+  margin-top: 2rem;
+
+  width: 100%;
+  max-width: 450px;
+  background-color: var(--white);
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.input{
+  font-size: 1rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: "Montserrat",sans-serif;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+.input:focus{
+  outline: 0;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+.addForm div{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 0.4rem;
+  font-size: 1.1rem;
+  label{
+    text-align: start;
+  }
+  select{
+    font-size: 1rem;
+    padding: 0.1rem 0;
+    font-family: "Montserrat",sans-serif;
+  }
+}
+select:focus{
+  outline: 0;
+}
+
+.file{
+  font-size: 1rem;
+  font-family: "Montserrat",sans-serif;
+}
+
+button{
+  border: 1px solid;
+}
+button:focus{
+  outline: 0;
+}
