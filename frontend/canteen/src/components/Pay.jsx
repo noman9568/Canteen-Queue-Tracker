@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import "../global.css";
 import { useNavigate } from "react-router-dom";
 
-const Pay = ({cartitems,amount}) =>{
+const Pay = ({cartitems,amount , id}) =>{
   const [token,setToken] = useState('');
   const navigate = useNavigate();
   useEffect(()=>{
@@ -42,9 +42,19 @@ const Pay = ({cartitems,amount}) =>{
         name: "ABES",
         description: "Payment for your order",
         order_id: orderData.id, // Order ID from Razorpay API
-        handler: (response) => {
+        handler: async (response) => {
           alert("Payment Successful!");
           // console.log(response);
+          const userId = id;
+          const fcmtoken = '3489yrnf3f';
+
+          await fetch("http://localhost:5000/api/queue/join",{
+            method: "POST",
+            headers : {
+              "content-type" : "application/json",
+            },
+            body : JSON.stringify({userId ,fcmtoken})
+          })
           // Send payment success details to your backend
         },
         prefill: {

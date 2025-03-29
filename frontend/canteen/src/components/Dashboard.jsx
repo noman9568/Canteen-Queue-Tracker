@@ -4,26 +4,25 @@ import '../admindashboard.css';
 
 const Dashboard = ({id}) => {
   const [d,setD] = useState([]);
-  const [joined,setjoined] = useState(false);
+  const [loading , setLoading] = useState(false);
 
   
 
-  const data = {
-    Id: id,
-    name:'nothing',
-    fcmtoken : '2022'
-  }
-  const joinQ = async ()=>{
-    socket.emit("joinQueue", data);
-    setjoined(true)
-  }
+  // const data = {
+  //   Id: id,
+  //   name:'nothing',
+  //   fcmtoken : '2022'
+  // }
+  // const joinQ = async ()=>{
+  //   socket.emit("joinQueue", data);
+  //   setjoined(true)
+  // }
   const getQueue = async () =>{
+    setLoading(true);
     const response = await fetch("http://localhost:5000/api/queue/getQueue");
     const data = await response.json()
-    // console.log(data)
-    // console.log("current UserId - " , id);
+    setLoading(false);
     setD(data);
-    setjoined(data.some(item => item.admissionNo === id));
   }
 
   useEffect(() => {
@@ -34,7 +33,6 @@ const Dashboard = ({id}) => {
     const handleQueueUpdate = (dataR) => {
       setD(dataR);
       console.log(dataR);
-      setjoined(dataR.some(item => item.admissionNo === id));
     };
     socket.on("updatedQueue",handleQueueUpdate)
     return () => {
@@ -43,15 +41,26 @@ const Dashboard = ({id}) => {
   },[id])
   return (
     <div className='user'>
-      <ul>
-        {d.map((item, index) => (
-          <li key={index}>{item.name} : {item.userId}</li>
-        ))}
-      </ul>
-      <button onClick={joinQ} disabled={joined}>
+      {/* <button onClick={joinQ} disabled={joined}>
         {joined ? "Joined" : "Join"}
-      </button>
+      </button> */}
+      { loading ? (
+      <div className='loading-spinner'>Loading orders...</div>
+      ) : (
+        d.length === 0 ? (
+          <div>No orders in the queue</div>
+        ) : (
+          d.map((item, index) => (
+            <div className='item'>
+              <div key={index} className='item-name'>{item.name}<span>ID:{item._id}</span></div>
+              <div className="item-status" style={{ color : item.status==='waiting' ? "red" : "green" }}>{item.status}</div>
+            </div>
+          ))
+        )
+      )}
     </div>
+
+    
   )
 }
 

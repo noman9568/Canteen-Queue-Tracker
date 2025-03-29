@@ -3,8 +3,11 @@ const User = require('../models/user');
 
 
 exports.joinQueue = async (req,res) =>{
-  const { userId , name , fcmtoken } = req.body;
+  const { userId , fcmtoken } = req.body;
   // console.log(req.body);
+  const user = await User.findOne({ _id : userId });
+  const name = user.name;
+  // console.log(user);
   const newUser = await Queue.create({userId , name , fcmtoken});
   res.status(200).json(newUser)
 };

@@ -43,12 +43,16 @@ const Cart = ({ setCartCount , id }) =>{
     const updatedCart = cartitems.map((item) =>
       item.dishId === dishId ? { ...item, quantity: item.quantity+1 } : item
     );
+    const amount = updatedCart.reduce((acc,item) => acc + item.quantity*item.price , 0);
+    setAmount(amount);
     updateCart(updatedCart);
   }
   const decreaseCount = (dishId) =>{
     const updatedCart = cartitems.map((item) =>
       item.dishId === dishId ? { ...item, quantity: item.quantity-1 } : item
     ).filter((item) => item.quantity > 0);
+    const amount = updatedCart.reduce((acc,item) => acc + item.quantity*item.price , 0);
+    setAmount(amount);
     updateCart(updatedCart);
   }
   useEffect(() => {
@@ -109,7 +113,7 @@ const Cart = ({ setCartCount , id }) =>{
               ))}
             </div>
           </div>
-        <Pay amount={amount} cartitems={cartitems}/>
+        <Pay amount={amount} id={id} cartitems={cartitems}/>
         </div>
       ) : ( '' )}
     </div>

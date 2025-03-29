@@ -6,10 +6,13 @@ import { data } from 'react-router-dom';
 const AdminDashboard = () => {
   const [d,setD] = useState([])
   const [none,setNone] = useState(false);
+  const [loading , setLoading] = useState(false);
   const getQueue = async () =>{
+    setLoading(true);
     const response = await fetch("http://localhost:5000/api/queue/getQueue");
     const data = await response.json()
     setD(data)
+    setLoading(false);
     setNone(data.length>0);
   }
   const notify = async () =>{
@@ -42,11 +45,20 @@ const AdminDashboard = () => {
   return (
     <div className='admin'>
       <h1>User Orders</h1>
-      <ul>
-        {d.map((item, index) => (
-          <li key={index}>{item.name} : {item.userId}</li>
-        ))}
-      </ul>
+      { loading ? (
+      <div className='loading-spinner'>Loading orders...</div>
+      ) : (
+        d.length === 0 ? (
+          <div>No orders in the queue</div>
+        ) : (
+          d.map((item, index) => (
+            <div className='item'>
+              <div key={index} className='item-name'>{item.name}<span>ID:{item._id}</span></div>
+              <div className="item-status" style={{ color : item.status==='waiting' ? "red" : "green" }}>{item.status}</div>
+            </div>
+          ))
+        )
+      )}
       <div>
         {/* <button onClick={getQueue}>Hello</button> */}
         <button onClick={notify} disabled={!none}>Notify</button>

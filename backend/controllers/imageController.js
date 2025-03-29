@@ -1,14 +1,19 @@
 const dish = require('../models/dish');
+const sharp = require("sharp");
 
 const uploadDish = async (req,res) =>{
   try {
+    const compressedImage = await sharp(req.file.buffer)
+      .resize(500, 500)
+      .webp({ quality: 80 })
+      .toBuffer();
     const Image = new dish({
       name : req.body.name,
       price : req.body.price,
       quantity : req.body.quantity,
       image : {
-        data : req.file.buffer,
-        contentType : req.file.mimetype,
+        data : compressedImage,
+        contentType : "image/webp",
       },
       category : req.body.category,
     });

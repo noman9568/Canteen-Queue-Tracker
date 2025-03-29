@@ -11,10 +11,10 @@
 
 .top{
   font-size: 3rem;
-  color: rgb(255, 255, 255);
+  color: rgb(8, 68, 27);
   padding: 1.5rem 0;
-  font-weight: 600;
-  font-family: "Cormorant",sans-serif;
+  font-weight: 500;
+  font-family: "Montserrat",sans-serif;
   border-radius: 6px;
   /* background: linear-gradient(135deg, #e1efff, #f4fdff); */
   background: url("/welcomeBack.jpg");
@@ -377,16 +377,23 @@ section {
 .orders{
   display: flex;
   flex-direction: column;
-  gap: 0.8rem;
+  gap: 1.2rem;
+}
+.order-container{
+  padding-bottom: 1.5rem;
 }
 .order-status{
   display: flex;
   justify-content: space-between;
+  margin-bottom: 0.5rem;
 }
 .order-status span:nth-child(1){
   color: red;
   font-size: 0.9rem;
   font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
 }
 .order-status span:nth-child(2){
   color: rgb(23, 35, 96);
@@ -406,7 +413,7 @@ section {
 .itemDetail{
   display: flex;
   align-items: center;
-  padding: 0;
+  padding: 0.1rem 0;
   justify-content: space-between;
 }
 .itemDetail .name{
@@ -432,7 +439,11 @@ section {
 
 
 
-
+@media (max-width:825px) {
+  .orderDetail{
+    width: 60%;
+  }
+}
 @media (max-width:725px) {
   .cart-item{
     width: 80%;
@@ -448,7 +459,7 @@ section {
     height: 10rem;
   }
   .orderDetail{
-    width: 60%;
+    width: 70%;
   }
 }
 @media (max-width:525px) {

@@ -60,9 +60,7 @@ exports.login = async (req,res) =>{
 exports.orderData = async (req,res) =>{
   try {
     const { id } = req.body;
-    // console.log(req.body);
-    const orders = await Order.find({userId : id});
-    // console.log(orders);
+    const orders = await Order.find({userId : id}).sort({createdAt : -1});
     res.json({message : "OK" , orders});
   }
   catch(error) {
