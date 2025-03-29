@@ -20,13 +20,31 @@ const allowedOrigins = [
   "https://canteen-queue-tracker-production.up.railway.app"
 ];
 
+app.use((req, res, next) => {
+  // Log the user agent to see what's different
+  console.log('User agent:', req.headers['user-agent']);
+  next();
+});
+
 app.use(cors({
-  origin: true,
+  origin: function(origin, callback) {
+    // Allow all requests from mobile apps (no origin)
+    if (!origin) {
+      return callback(null, true);
+    }
+    
+    if (allowedOrigins.indexOf(origin) !== -1) {
+      return callback(null, true);
+    } else {
+      console.log("Blocked origin:", origin);
+      // Still allow it for testing
+      return callback(null, true);
+    }
+  },
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
 }));
-
 app.options("*", cors());
 
 const io = new Server(server, {
