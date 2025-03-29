@@ -27,6 +27,8 @@ app.use(cors({
   allowedHeaders: ["Content-Type", "Authorization"],
 }));
 
+app.options("*", cors());
+
 const io = new Server(server, {
   cors: {
     origin: allowedOrigins,
@@ -37,11 +39,12 @@ const io = new Server(server, {
 
 app.set("io",io);
 app.use(express.json());
-app.use(express.static('public')); // Serve static files from the "public" directory
-app.use('/api/queue',cors(),queueRoutes);
-app.use('/api/user',cors(),userRoutes);
-app.use('/api',cors(),imageRoutes);
-app.use('/api/order',cors(),orderRoutes);
+app.use(express.static('public'));
+
+app.use('/api/queue',queueRoutes);
+app.use('/api/user',userRoutes);
+app.use('/api',imageRoutes);
+app.use('/api/order',orderRoutes);
 
 connectDB();
 
