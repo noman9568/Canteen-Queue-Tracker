@@ -47,7 +47,7 @@ exports.getQueue = async (req,res) =>{
 exports.deleteQ = async (req,res) =>{
   try {
     const { _id } = req.body;
-    const data = await Queue.findByIdAndDelete({_id})
+    const data = await Queue.findByIdAndDelete({_id});
     const io = req.app.get("io");
     io.emit('updatedQueue',await Queue.find());
     return res.status(200).json({message : "User removed from Queue."});

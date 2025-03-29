@@ -19,16 +19,22 @@ const AdminDashboard = () => {
     if (d.length === 0){
       return;
     }
-    const response = await fetch("http://localhost:5000/api/queue/delete",{
-      method : "POST",
-      headers :{
-        "Content-Type" : "application/json"
-      },
-      body: JSON.stringify({_id : d[0]._id})
-    })
-    if(response.ok){
-      getQueue();
-    }
+    const updatedQueue = d.map((item,index)=> (
+      index===0 ? { ...item , status : "Completed"} : item
+    ));
+    setD(updatedQueue);
+    setTimeout(async ()=>{
+      const response = await fetch("http://localhost:5000/api/queue/delete",{
+        method : "POST",
+        headers :{
+          "Content-Type" : "application/json"
+        },
+        body: JSON.stringify({_id : d[0]._id})
+      })
+      if(response.ok){
+        getQueue();
+      }
+    },1500);
   }
   
   
