@@ -24,10 +24,14 @@ const io = new Server(server,{
     credentials : true
   }
 })
+app.use(cors({
+  origin: ["https://canteen-queue-tracker.vercel.app"], // Only allow frontend
+  credentials: true,
+}));
+
 
 
 app.set("io",io);
-app.use(cors());
 app.use(express.json());
 app.use(express.static('public')); // Serve static files from the "public" directory
 app.use('/api/queue',queueRoutes);
