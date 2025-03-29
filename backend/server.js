@@ -11,16 +11,15 @@ const imageRoutes = require("./routes/imageRoutes");
 const orderRoutes = require("./routes/orderRoutes");
 const connectDB = require("./config/db");
 const admin = require("./config/firebase");
+const app = express();
+const Queue = require('./models/queue');
+const server = http.createServer(app)
 
 app.use(cors({
   origin: ["https://canteen-queue-tracker.vercel.app"], 
   credentials: true,
 }));
-const Queue = require('./models/queue');
 
-
-const app = express();
-const server = http.createServer(app)
 const io = new Server(server,{
   cors : {
     origin : "https://canteen-queue-tracker.vercel.app",
