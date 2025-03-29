@@ -19,8 +19,10 @@ const Queue = require('./models/queue');
 const app = express();
 const server = http.createServer(app)
 const io = new Server(server,{
-  cors : "https://canteen-queue-tracker.vercel.app",
-  credentials : true
+  cors : {
+    origin : "*",
+    credentials : true
+  }
 })
 
 
