@@ -27,20 +27,7 @@ app.use((req, res, next) => {
 });
 
 app.use(cors({
-  origin: function(origin, callback) {
-    // Allow all requests from mobile apps (no origin)
-    if (!origin) {
-      return callback(null, true);
-    }
-    
-    if (allowedOrigins.indexOf(origin) !== -1) {
-      return callback(null, true);
-    } else {
-      console.log("Blocked origin:", origin);
-      // Still allow it for testing
-      return callback(null, true);
-    }
-  },
+  origin: '*',
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],

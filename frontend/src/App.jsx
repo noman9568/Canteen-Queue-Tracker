@@ -15,6 +15,8 @@ import { useEffect, useState } from 'react';
 import { jwtDecode } from 'jwt-decode';
 import Sidebar from './components/Sidebar';
 import Orders from './components/Order';
+const API_URL = import.meta.env.VITE_BACKEND_API_URL;
+
 function App() {
   const [id,setId] = useState('');
   const [username,setUsername] = useState('');
@@ -27,7 +29,11 @@ function App() {
   const toggleSidebar = () =>{
     setSidebarOpen(!sidebarOpen);
   }
-
+  // On your frontend
+const ismobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+console.log("Is mobile device:", ismobile);
+console.log("User agent:", navigator.userAgent);
+console.log("API URL used:", API_URL);
   useEffect(()=>{
     const handleResize = () => setIsMobile(window.innerWidth <= 768);
     window.addEventListener("resize",handleResize);
