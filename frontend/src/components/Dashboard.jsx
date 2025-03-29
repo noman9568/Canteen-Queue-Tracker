@@ -19,7 +19,7 @@ const Dashboard = ({id}) => {
   // }
   const getQueue = async () =>{
     setLoading(true);
-    const response = await fetch("https://canteen-queue-tracker-production.up.railway.app//api/queue/getQueue");
+    const response = await fetch("https://canteen-queue-tracker-production.up.railway.app/api/queue/getQueue");
     const data = await response.json()
     setLoading(false);
     setD(data);

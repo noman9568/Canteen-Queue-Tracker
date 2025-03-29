@@ -9,7 +9,7 @@ const Home = ({username , setCartCount , id}) => {
     // console.log(id)
     const fetchData = async ()=>{
       try {
-        const response = await fetch("https://canteen-queue-tracker-production.up.railway.app//api/dishData");
+        const response = await fetch("https://canteen-queue-tracker-production.up.railway.app/api/dishData");
         const result = await response.json();
         const updatedData = result.data.map((item) => {
           const arrayBufferToBase64 = (buffer) => {
