@@ -34,9 +34,6 @@ const io = new Server(server, {
   },
 });
 
-app.options("*", cors());
-
-
 
 app.set("io",io);
 app.use(express.json());
