@@ -169,6 +169,9 @@ html{
   html{
     font-size: 12px;
   }
+  #root{
+    color: black;
+  }
   .menu-btn{
     padding: 0.35rem 0.7rem;
   }
@@ -177,6 +180,9 @@ html{
   }
   nav navbar{
     gap: 1rem;
+  }
+  .nav-logo{
+    color: black;
   }
 }
 
