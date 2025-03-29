@@ -29,14 +29,12 @@ app.use((req, res, next) => {
 app.use(cors({
   origin: '*',
   credentials: true,
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization"],
 }));
-app.options("*", cors());
+// app.options("*", cors());
 
 const io = new Server(server, {
   cors: {
-    origin: true,
+    origin: "*",
     credentials: true,
   },
 });
