@@ -23,7 +23,7 @@ const Add = () =>{
     formData.append("image",image);
 
     try{
-      const response = await fetch("http://localhost:5000/api/add",{
+      const response = await fetch("https://canteen-queue-tracker-production.up.railway.app//api/add",{
         method : "POST",
         body : formData,
       })

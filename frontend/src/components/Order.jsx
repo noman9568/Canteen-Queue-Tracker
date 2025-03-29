@@ -11,7 +11,7 @@ import "../global.css";
 const Order = () =>{
   const [orders,setOrders] = useState([]);
   const orderFetch = async (id) =>{
-    const response = await fetch("http://localhost:5000/api/user/orderData",{
+    const response = await fetch("https://canteen-queue-tracker-production.up.railway.app//api/user/orderData",{
       method : "POST",
       headers :{
         'content-type' : 'application/json'

@@ -9,7 +9,7 @@ const AdminDashboard = () => {
   const [loading , setLoading] = useState(false);
   const getQueue = async () =>{
     setLoading(true);
-    const response = await fetch("http://localhost:5000/api/queue/getQueue");
+    const response = await fetch("https://canteen-queue-tracker-production.up.railway.app//api/queue/getQueue");
     const data = await response.json()
     setD(data)
     setLoading(false);
@@ -24,7 +24,7 @@ const AdminDashboard = () => {
     ));
     setD(updatedQueue);
     setTimeout(async ()=>{
-      const response = await fetch("http://localhost:5000/api/queue/delete",{
+      const response = await fetch("https://canteen-queue-tracker-production.up.railway.app//api/queue/delete",{
         method : "POST",
         headers :{
           "Content-Type" : "application/json"
