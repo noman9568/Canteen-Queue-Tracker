@@ -12,7 +12,10 @@ const orderRoutes = require("./routes/orderRoutes");
 const connectDB = require("./config/db");
 const admin = require("./config/firebase");
 
-
+app.use(cors({
+  origin: ["https://canteen-queue-tracker.vercel.app"], 
+  credentials: true,
+}));
 const Queue = require('./models/queue');
 
 
@@ -20,14 +23,10 @@ const app = express();
 const server = http.createServer(app)
 const io = new Server(server,{
   cors : {
-    origin : "*",
+    origin : "https://canteen-queue-tracker.vercel.app",
     credentials : true
   }
 })
-app.use(cors({
-  origin: ["https://canteen-queue-tracker.vercel.app"], // Only allow frontend
-  credentials: true,
-}));
 
 
 
