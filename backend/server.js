@@ -15,17 +15,24 @@ const app = express();
 const Queue = require('./models/queue');
 const server = http.createServer(app)
 
+const allowedOrigins = [
+  "https://canteen-queue-tracker.vercel.app",
+  "https://canteen-queue-tracker-production.up.railway.app"
+];
+
 app.use(cors({
-  origin: ["https://canteen-queue-tracker.vercel.app"], 
+  origin: allowedOrigins,
   credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
 }));
 
-const io = new Server(server,{
-  cors : {
-    origin : "https://canteen-queue-tracker.vercel.app",
-    credentials : true
-  }
-})
+const io = new Server(server, {
+  cors: {
+    origin: allowedOrigins,
+    credentials: true,
+  },
+});
 
 
 
