@@ -30,7 +30,7 @@ app.use(cors({
   origin: '*',
   credentials: true,
 }));
-// app.options("*", cors());
+app.options("*", cors());
 
 const io = new Server(server, {
   cors: {

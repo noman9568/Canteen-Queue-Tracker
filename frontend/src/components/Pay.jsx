@@ -49,7 +49,7 @@ const Pay = ({cartitems,amount , id}) =>{
           const userId = id;
           const fcmtoken = '3489yrnf3f';
 
-          await fetch("${API_URL}/api/queue/join",{
+          await fetch(`${API_URL}/api/queue/join`,{
             method: "POST",
             headers : {
               "content-type" : "application/json",
