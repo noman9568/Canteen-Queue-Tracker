@@ -8,10 +8,11 @@ import {
   TagIcon 
 } from "lucide-react";
 import "../global.css";
+const API_URL = import.meta.env.VITE_BACKEND_API_URL;
 const Order = () =>{
   const [orders,setOrders] = useState([]);
   const orderFetch = async (id) =>{
-    const response = await fetch("https://canteen-queue-tracker-production.up.railway.app/api/user/orderData",{
+    const response = await fetch(`${API_URL}/api/user/orderData`,{
       method : "POST",
       headers :{
         'content-type' : 'application/json'

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "../global.css";
 import { useNavigate } from "react-router-dom";
+const API_URL = import.meta.env.VITE_BACKEND_API_URL;
 
 const Pay = ({cartitems,amount , id}) =>{
   const [token,setToken] = useState('');
@@ -27,7 +28,7 @@ const Pay = ({cartitems,amount , id}) =>{
       return;
     }
     try {
-      const response = await fetch("https://canteen-queue-tracker-production.up.railway.app/api/order/placeOrder",{
+      const response = await fetch(`${API_URL}/api/order/placeOrder`,{
         method : "POST",
         headers : {
           "content-Type" : "application/json"
@@ -48,7 +49,7 @@ const Pay = ({cartitems,amount , id}) =>{
           const userId = id;
           const fcmtoken = '3489yrnf3f';
 
-          await fetch("https://canteen-queue-tracker-production.up.railway.app/api/queue/join",{
+          await fetch("${API_URL}/api/queue/join",{
             method: "POST",
             headers : {
               "content-type" : "application/json",

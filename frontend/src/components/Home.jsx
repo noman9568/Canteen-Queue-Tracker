@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import "../global.css";
 import Card from "./Card";
+const API_URL = import.meta.env.VITE_BACKEND_API_URL;
 
 const Home = ({username , setCartCount , id}) => {
 
@@ -9,7 +10,7 @@ const Home = ({username , setCartCount , id}) => {
     // console.log(id)
     const fetchData = async ()=>{
       try {
-        const response = await fetch("https://canteen-queue-tracker-production.up.railway.app/api/dishData");
+        const response = await fetch(`${API_URL}/api/dishData`);
         const result = await response.json();
         const updatedData = result.data.map((item) => {
           const arrayBufferToBase64 = (buffer) => {

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../form.css';
+const API_URL = import.meta.env.VITE_BACKEND_API_URL;
 
 const Register = () => {
   const [data, setData] = useState({
@@ -28,7 +29,7 @@ const Register = () => {
     setError('');
 
     try {
-      const response = await fetch("https://canteen-queue-tracker-production.up.railway.app/api/user/register", {
+      const response = await fetch(`${API_URL}/api/user/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

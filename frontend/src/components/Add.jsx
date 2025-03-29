@@ -1,5 +1,6 @@
-import react, { useState } from 'react';
+import { useState } from 'react';
 import '../add.css';
+const API_URL = import.meta.env.VITE_BACKEND_API_URL;
 
 const Add = () =>{
   const [image,setImage] = useState(null);
@@ -23,7 +24,7 @@ const Add = () =>{
     formData.append("image",image);
 
     try{
-      const response = await fetch("https://canteen-queue-tracker-production.up.railway.app/api/add",{
+      const response = await fetch(`${API_URL}/api/add`,{
         method : "POST",
         body : formData,
       })

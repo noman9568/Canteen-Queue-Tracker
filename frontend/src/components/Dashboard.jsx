@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import socket from './Socket';
 import '../admindashboard.css';
+const API_URL = import.meta.env.VITE_BACKEND_API_URL;
 
 const Dashboard = ({id}) => {
   const [d,setD] = useState([]);
@@ -19,7 +20,7 @@ const Dashboard = ({id}) => {
   // }
   const getQueue = async () =>{
     setLoading(true);
-    const response = await fetch("https://canteen-queue-tracker-production.up.railway.app/api/queue/getQueue");
+    const response = await fetch(`${API_URL}/api/queue/getQueue`);
     const data = await response.json()
     setLoading(false);
     setD(data);
