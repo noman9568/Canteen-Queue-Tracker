@@ -285,7 +285,7 @@ section {
 .cart-item{
   width: 50%;
   margin: 0 auto;
-  border: 2px solid rgb(205, 205, 205);
+  border: 2px solid rgb(195, 195, 195);
   padding: 0 1rem;
   border-radius: 8px;
   font-size: 1.3rem;
@@ -307,6 +307,7 @@ section {
   width: 5rem;
   align-items: center;
   justify-content: space-between;
+  border: 1px solid rgb(57, 57, 57);
   background-color: rgb(252, 252, 252);
 }
 .minus-cart{
@@ -329,6 +330,7 @@ section {
   margin-top: 2rem;
   border-radius: 8px;
   background-color: white;
+  border: 1px solid rgb(255, 0, 0);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
 .total-bill{

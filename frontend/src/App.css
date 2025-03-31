@@ -137,7 +137,7 @@ html{
 
 .menu-btn{
   font-size: 1.3rem;
-  /* font-weight: bolder; */
+  background-color: rgb(253, 252, 252);
   display: flex;
   align-items: center;
   
@@ -180,9 +180,6 @@ html{
   }
   nav navbar{
     gap: 1rem;
-  }
-  .nav-logo{
-    color: black;
   }
 }
 

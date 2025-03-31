@@ -66,7 +66,7 @@ const AdminDashboard = () => {
           ))
         )
       )}
-      <div>
+      <div className='notify-btn'>
         {/* <button onClick={getQueue}>Hello</button> */}
         <button onClick={notify} disabled={!none}>Notify</button>
       </div>
