@@ -22,7 +22,7 @@ const allowedOrigins = [
 
 app.use((req, res, next) => {
   // Log the user agent to see what's different
-  console.log('User agent:', req.headers['user-agent']);
+  // console.log('User agent:', req.headers['user-agent']);
   next();
 });
 

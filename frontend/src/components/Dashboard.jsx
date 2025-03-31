@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import socket from './Socket';
 import '../admindashboard.css';
+import _ from "lodash";
 const API_URL = import.meta.env.VITE_BACKEND_API_URL;
 
 const Dashboard = ({id}) => {
@@ -19,37 +20,53 @@ const Dashboard = ({id}) => {
   //   setjoined(true)
   // }
   const getQueue = async () =>{
-    setLoading(true);
-    const response = await fetch(`${API_URL}/api/queue/getQueue`);
-    const data = await response.json()
-    setLoading(false);
-    setD(data);
+    try {
+      setLoading(true);
+      const response = await fetch(`${API_URL}/api/queue/getQueue`);
+      const data = await response.json()
+      const prevId = d.map(item => item._id).sort();
+      const newId = data.map(item => item._id).sort();
+      
+      if(!_.isEqual(prevId,newId)){
+        console.log("Updating the data.");
+        setD(data);
+      }
+    }
+    catch(error) {
+      console.log("Error fetching the queue:",error);
+      setLoading(false);
+    }
+    finally {
+      setLoading(false);
+    }
   }
 
   useEffect(() => {
-    getQueue();
-  }, [id]);
+    const interval = setInterval(getQueue,5000);
+    return () => clearInterval(interval);
+  }, []);
 
   useEffect(()=>{
     const handleQueueUpdate = (dataR) => {
-      setD(dataR);
-      console.log(dataR);
+      const prevId = d.map(item => item._id).sort();
+      const newId = dataR.map(item => item._id).sort();
+      if(!_.isEqual(prevId,newId)){
+        setD(dataR);
+      }
     };
     socket.on("updatedQueue",handleQueueUpdate)
     return () => {
       socket.off("updatedQueue",handleQueueUpdate);
     };
-  },[id])
+  },[d])
   return (
     <div className='user'>
-      {/* <button onClick={joinQ} disabled={joined}>
-        {joined ? "Joined" : "Join"}
-      </button> */}
+      <div className="dashboard-header">Queue Dashboard</div>
       { loading ? (
       <div className='loading-spinner'>Loading orders...</div>
       ) : (
         d.length === 0 ? (
-          <div>No orders in the queue</div>
+          <div className='noQueue-message'>No orders in the queue</div>
         ) : (
           d.map((item, index) => (
             <div className='item'>

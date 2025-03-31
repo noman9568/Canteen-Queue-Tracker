@@ -285,7 +285,7 @@ section {
 .cart-item{
   width: 50%;
   margin: 0 auto;
-  border: 2px solid rgb(199, 199, 199);
+  border: 2px solid rgb(205, 205, 205);
   padding: 0 1rem;
   border-radius: 8px;
   font-size: 1.3rem;
@@ -294,7 +294,6 @@ section {
   align-items: center;
   background-color: white;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-  border: 1px solid #e0e0e0;
 }
 .item-price{
   color: black;
@@ -308,6 +307,7 @@ section {
   width: 5rem;
   align-items: center;
   justify-content: space-between;
+  background-color: rgb(252, 252, 252);
 }
 .minus-cart{
   border-top-left-radius: 8px;
@@ -387,33 +387,30 @@ section {
   justify-content: space-between;
   margin-bottom: 0.5rem;
 }
-.order-status span:nth-child(1){
-  color: red;
-  font-size: 0.9rem;
-  font-weight: 500;
-  display: flex;
-  align-items: center;
-  gap: 0.3rem;
+.status{
+  font-size: 1.3rem;
 }
 .order-status span:nth-child(2){
-  color: rgb(23, 35, 96);
+  color: rgb(0, 29, 102);
   font-family: "Roboto",sans-serif;
+  font-size: 1.1rem;
 }
 .orderDetail{
-  /* border: 1px solid; */
-  width: 50%;
+  width: 53%;
   background-color: white;
   border-radius: 6px;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 1.1rem;
   margin: 0 auto;
   text-align: start;
+  border: 2px solid rgb(158, 158, 158);
   box-shadow: 0 4px 6px rgba(73, 73, 73, 0.1);
-  font-family: "Raleway",sans-serif;
+  font-family: "Roboto",sans-serif;
 }
 .itemDetail{
   display: flex;
   align-items: center;
-  padding: 0.1rem 0;
+  padding: 0 0.1rem;
+  font-size: 1.1rem;
   justify-content: space-between;
 }
 .itemDetail .name{
@@ -421,10 +418,10 @@ section {
 }
 .itemName{
   font-weight: 500;
-  font-size: 1.2rem;
+  /* font-size: 1.1rem; */
 }
 .priceQ{
-  font-size: 1.1rem;
+  font-size: 1rem;
 }
 .total-amount{
   display: flex;
@@ -433,6 +430,9 @@ section {
   border-top: 2px solid rgb(0, 0, 113);
   /* text-align: end; */
   font-weight: 500;
+}
+.total-amount span:nth-child(2){
+  font-size: 1.25rem;
 }
 
 
