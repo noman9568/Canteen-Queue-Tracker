@@ -14,7 +14,7 @@
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
-  background-color: rgb(239, 239, 239);
+  background-color: rgb(240, 240, 240);
   border: none;
   padding: 2.5rem;
   width: 100%;
@@ -62,8 +62,8 @@
   padding: 0.75rem 1rem;
   font-size: 1.1rem;
   font-family: "Quicksand", sans-serif;
-  border: 2px solid #e0e7ff;
-  background-color: #f8fafc;
+  border: 2px solid #c5d1ff;
+  background-color: #fbfdff;
   color: #333;
   border-radius: 8px;
   transition: all 0.3s ease;
@@ -71,8 +71,8 @@
 
 .Form input:focus {
   outline: none;
-  border-color: #3b82f6;
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  border-color: #3581fd;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1);
   background-color: white;
 }
 
@@ -184,7 +184,7 @@ formContainer > h2 {
 }
 @media (max-width:625px) {
   .Form{
-    max-width: 400px;
+    max-width: 380px;
   }
   .input-group label{
     font-size: 1.1rem;
@@ -192,7 +192,8 @@ formContainer > h2 {
 }
 @media (max-width: 500px) {
   .Form {
-    padding: 2rem 1rem;
+    padding: 2.1rem 1rem;
+    max-width: 350px;
   }
   
   .form-actions {
@@ -207,5 +208,11 @@ formContainer > h2 {
   
   .forgotpwd {
     text-align: center;
+  }
+}
+@media (max-width:425px) {
+  .Form{
+    border: 2px solid rgb(208, 208, 208);
+    max-width: 320px;
   }
 }
