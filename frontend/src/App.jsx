@@ -102,7 +102,7 @@ console.log("API URL used:", API_URL);
                 <button onClick={toggleSidebar} className="menu-btn"><GiHamburgerMenu /></button>
               )}
             </navbar>
-
+            <div className={`screen-hover ${sidebarOpen ? "active" : ""}`} onClick={toggleSidebar}></div>
           {sidebarOpen && isMobile && ( <Sidebar token={token} role={role} sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} /> )}
         </nav>
         <Routes>
