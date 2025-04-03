@@ -1,5 +1,6 @@
 const Queue = require('../models/queue');
 const User = require('../models/user');
+const Order = require('../models/order');
 
 
 exports.joinQueue = async (req,res) =>{
@@ -46,7 +47,9 @@ exports.getQueue = async (req,res) =>{
 
 exports.deleteQ = async (req,res) =>{
   try {
-    const { _id } = req.body;
+    const { _id , userId } = req.body;
+    const order = await Order.findOneAndUpdate({userId},{status : "Completed"},{new : true});
+    console.log(order);
     const data = await Queue.findByIdAndDelete({_id});
     const io = req.app.get("io");
     io.emit('updatedQueue',await Queue.find());

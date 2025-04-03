@@ -394,8 +394,9 @@ section {
   font-size: 1.5rem;
   /* border: 1px solid rgb(40, 40, 40); */
   border-radius: 4px;
-  background-color: whitesmoke;
-  box-shadow: 0 0px 4px rgb(118, 118, 118,0.7);
+  /* background-color: whitesmoke; */
+  text-shadow: 0 0px 4px rgba(101, 101, 101, 0.8);
+  /* box-shadow: 0 0px 4px rgb(118, 118, 118,0.7); */
 }
 .order-status span:nth-child(2){
   color: rgb(0, 29, 102);

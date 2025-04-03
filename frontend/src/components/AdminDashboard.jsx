@@ -25,12 +25,13 @@ const AdminDashboard = () => {
     ));
     setD(updatedQueue);
     setTimeout(async ()=>{
+      console.log(d[0].userId);
       const response = await fetch(`${API_URL}/api/queue/delete`,{
         method : "POST",
         headers :{
           "Content-Type" : "application/json"
         },
-        body: JSON.stringify({_id : d[0]._id})
+        body: JSON.stringify({_id : d[0]._id , userId : d[0].userId})
       })
       if(response.ok){
         getQueue();
