@@ -8,6 +8,7 @@ import { RiLoginBoxLine } from "react-icons/ri";
 import { GrUserAdmin } from "react-icons/gr";
 import { IoMdAddCircleOutline } from "react-icons/io";
 import { BsCartCheck } from "react-icons/bs";
+import { CgProfile } from "react-icons/cg";
 const Sidebar = ({token , role , setSidebarOpen}) =>{
   const closeSidebar = () =>{
     setSidebarOpen(false);
@@ -23,6 +24,7 @@ const Sidebar = ({token , role , setSidebarOpen}) =>{
       {token && role == "admin" && <Link to="/admindashboard" onClick={closeSidebar}><GrUserAdmin className='sidebar-icons'/>Admin Dashboard</Link>}
       {token && role == "user" && <Link to="/orders" onClick={closeSidebar}><BsCartCheck className='sidebar-icons'/>Orders</Link>}
       {token && role == "admin" && <Link to="/add" onClick={closeSidebar}><IoMdAddCircleOutline className='sidebar-icons'/>Add</Link>}
+      {token && <Link to="/profile"><CgProfile className='sidebar-icons' />Profile</Link>}
     </div>
   )
 }

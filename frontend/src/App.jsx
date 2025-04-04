@@ -11,10 +11,12 @@ import Logout from './components/Logout';
 import Add from './components/Add';
 import Cart from './components/Cart';
 import { GiKnifeFork } from "react-icons/gi";
+import { CgProfile } from "react-icons/cg";
 import { useEffect, useState } from 'react';
 import { jwtDecode } from 'jwt-decode';
 import Sidebar from './components/Sidebar';
 import Orders from './components/Order';
+import Profile from './components/Profile';
 const API_URL = import.meta.env.VITE_BACKEND_API_URL;
 
 function App() {
@@ -63,7 +65,7 @@ console.log("API URL used:", API_URL);
         }
       }
       catch (error) {
-        console.log("Invalid token. Logging out...");
+        console.log("Invalid token. Logging out... :",error);
         localStorage.removeItem("token");
         localStorage.removeItem("role");
         setToken(null);
@@ -101,6 +103,7 @@ console.log("API URL used:", API_URL);
               {isMobile && (
                 <button onClick={toggleSidebar} className="menu-btn"><GiHamburgerMenu /></button>
               )}
+              {!isMobile && token && <Link to="/profile" className='user-profile'><CgProfile size={27}></CgProfile></Link>}
             </navbar>
             <div className={`screen-hover ${sidebarOpen ? "active" : ""}`} onClick={toggleSidebar}></div>
           {sidebarOpen && isMobile && ( <Sidebar token={token} role={role} sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} /> )}
@@ -114,6 +117,7 @@ console.log("API URL used:", API_URL);
           <Route path='/adminDashboard' element={<ProtectedRoute allowedRoles={['admin']}> <AdminDashboard /> </ProtectedRoute> } />
           <Route path='/orders' element={<Orders id={id}/>} />
           <Route path='/cart' element={<Cart setCartCount={setCartCount} id={id}/>} />
+          <Route path='/profile' element={<Profile />} />
         </Routes>
       </Router>
     </>

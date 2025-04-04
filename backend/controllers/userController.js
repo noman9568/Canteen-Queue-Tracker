@@ -68,3 +68,14 @@ exports.orderData = async (req,res) =>{
   }
 }
 
+exports.userData = async (req,res) =>{
+  try {
+    const {userId} = req.body;
+    const user = await User.findOne({_id : userId});
+    res.status(200).json({user});
+  }
+  catch(error) {
+    res.status(404).json({error});
+  }
+}
+
