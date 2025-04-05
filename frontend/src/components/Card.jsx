@@ -1,32 +1,27 @@
 import React, { useEffect, useState } from 'react';
-import "../global.css";
 
 const Card = ({ dishImage, dishName, dishPrice, dishQuantity, setCartCount, dish, id }) => {
   const [count, setCount] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
 
-  // Helper function to get cart from localStorage
   const getCart = () => JSON.parse(localStorage.getItem(`cart_${id}`)) || [];
 
-  // Sync cart data with localStorage
   const syncCart = (cart) => {
     localStorage.setItem(`cart_${id}`, JSON.stringify(cart));
     updateCartCount(cart);
   };
 
-  // Update global cart count
   const updateCartCount = (cart) => {
     const totalItems = cart.reduce((acc, item) => acc + item.quantity, 0);
     setCartCount(totalItems);
   };
 
-  // Add or update item in the cart
   const addToCart = () => {
     const cart = getCart();
     const existingItem = cart.find((item) => item.dishId === dish._id);
 
     if (existingItem) {
-      existingItem.quantity += 1; // Update quantity
+      existingItem.quantity += 1; 
     } else {
       cart.push({
         dishId: dish._id,
@@ -40,7 +35,6 @@ const Card = ({ dishImage, dishName, dishPrice, dishQuantity, setCartCount, dish
     setCount((prev) => prev + 1);
   };
 
-  // Update quantity or remove item if quantity reaches 0
   const updateCartQuantity = (newQuantity) => {
     const cart = getCart();
     const updatedCart = cart
@@ -65,7 +59,6 @@ const Card = ({ dishImage, dishName, dishPrice, dishQuantity, setCartCount, dish
     }
   };
 
-  // Load cart data from localStorage on component mount
   useEffect(() => {
     const cart = getCart();
     const existingItem = cart.find((item) => item.dishId === dish._id);

@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import Pay from "../components/Pay";
-import "../global.css";
 
 const Cart = ({ setCartCount , id }) =>{
 
@@ -25,13 +24,6 @@ const Cart = ({ setCartCount , id }) =>{
     }
 
   },[]);
-
-  // useEffect(()=>{
-  //   const interval = setInterval(()=>{
-  //     fetchCartitems();
-  //   },500);
-  //   return () => clearInterval(interval);
-  // },[]);
 
   const updateCart = (updatedCart) =>{
     localStorage.setItem(`cart_${id}`,JSON.stringify(updatedCart));

@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { jwtDecode } from "jwt-decode";
-import { ShoppingCart } from "lucide-react";
-import "../global.css";
+
 const API_URL = import.meta.env.VITE_BACKEND_API_URL;
 const Order = () =>{
   const [orders,setOrders] = useState([]);

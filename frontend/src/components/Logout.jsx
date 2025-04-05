@@ -1,7 +1,6 @@
 // import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { IoLogOutOutline } from "react-icons/io5";
-import '../global.css';
 
 const Logout = ({setId , setToken , setRole , setUsername}) => {
   const navigate = useNavigate();

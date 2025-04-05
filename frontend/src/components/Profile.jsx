@@ -25,7 +25,7 @@ const Profile = () =>{
       
     }
     catch(error) {
-      console.error("Failed to fetch user details : ");
+      console.error("Failed to fetch user details : ",error);
     }
   }
   useEffect(()=>{

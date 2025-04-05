@@ -1,4 +1,5 @@
-import './App.css'
+import './App.css';
+import "./styles/global.scss";
 import { BrowserRouter as Router, Routes, Route, Link, Navigate } from "react-router-dom";
 import { FaShoppingCart } from 'react-icons/fa';
 import { GiHamburgerMenu } from "react-icons/gi";

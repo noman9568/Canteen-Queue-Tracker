@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import "../global.css";
 import { useNavigate } from "react-router-dom";
 const API_URL = import.meta.env.VITE_BACKEND_API_URL;
 
@@ -44,7 +43,7 @@ const Pay = ({cartitems,amount , id}) =>{
         description: "Payment for your order",
         order_id: orderData.id, // Order ID from Razorpay API
         handler: async (response) => {
-          alert("Payment Successful!");
+          alert("Payment Successful!",response);
           // console.log(response);
           const userId = id;
           const fcmtoken = '3489yrnf3f';
