@@ -41,6 +41,7 @@
   font-size: 1rem;
   font-family: "Montserrat",sans-serif;
   font-weight: 500;
+  background-color: white;
   transition: all 0.3s ease;
 }
 .input:focus{
