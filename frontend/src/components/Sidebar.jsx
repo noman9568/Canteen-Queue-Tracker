@@ -24,7 +24,7 @@ const Sidebar = ({token , role , setSidebarOpen}) =>{
       {token && role == "admin" && <Link to="/admindashboard" onClick={closeSidebar}><GrUserAdmin className='sidebar-icons'/>Admin Dashboard</Link>}
       {token && role == "user" && <Link to="/orders" onClick={closeSidebar}><BsCartCheck className='sidebar-icons'/>Orders</Link>}
       {token && role == "admin" && <Link to="/add" onClick={closeSidebar}><IoMdAddCircleOutline className='sidebar-icons'/>Add</Link>}
-      {token && <Link to="/profile"><CgProfile className='sidebar-icons' />Profile</Link>}
+      {token && <Link to="/profile" onClick={closeSidebar}><CgProfile className='sidebar-icons' />Profile</Link>}
     </div>
   )
 }

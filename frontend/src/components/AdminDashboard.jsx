@@ -50,6 +50,11 @@ const AdminDashboard = () => {
       socket.off("updatedQueue");
     };
   },[])
+  useEffect(()=>{
+    const interval = setInterval(getQueue,5000);
+    return () => clearInterval(interval);
+  },[]);
+  
   return (
     <div className='admin'>
       <h1>User Orders</h1>
