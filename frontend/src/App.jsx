@@ -1,5 +1,7 @@
 import './App.css';
 import "./styles/global.scss";
+import NotificationSetup from "./components/NotificationSetup.jsx";
+
 import { BrowserRouter as Router, Routes, Route, Link, Navigate } from "react-router-dom";
 import { FaShoppingCart } from 'react-icons/fa';
 import { GiHamburgerMenu } from "react-icons/gi";
@@ -33,10 +35,10 @@ function App() {
     setSidebarOpen(!sidebarOpen);
   }
   // On your frontend
-const ismobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-console.log("Is mobile device:", ismobile);
-console.log("User agent:", navigator.userAgent);
-console.log("API URL used:", API_URL);
+// const ismobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+// console.log("Is mobile device:", ismobile);
+// console.log("User agent:", navigator.userAgent);
+// console.log("API URL used:", API_URL);
   useEffect(()=>{
     const handleResize = () => setIsMobile(window.innerWidth <= 768);
     window.addEventListener("resize",handleResize);
@@ -83,7 +85,7 @@ console.log("API URL used:", API_URL);
     return children;
   };
   return (
-    <>
+      <NotificationSetup>
       <Router>
         <nav cartcount={cartcount}>
           <logo><GiKnifeFork className='nav-logo'/>CanteenQ</logo>
@@ -121,7 +123,7 @@ console.log("API URL used:", API_URL);
           <Route path='/profile' element={<Profile />} />
         </Routes>
       </Router>
-    </>
+      </NotificationSetup>
   )
 }
 

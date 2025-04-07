@@ -3,8 +3,8 @@ import socket from './Socket';
 import '../admindashboard.css';
 import _ from "lodash";
 const API_URL = import.meta.env.VITE_BACKEND_API_URL;
-
-const Dashboard = ({id}) => {
+// here add {id}
+const Dashboard = () => {
   const [d,setD] = useState([]);
   const [loading , setLoading] = useState(false);
 
