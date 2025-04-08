@@ -8,6 +8,7 @@ const AdminDashboard = () => {
   const [d,setD] = useState([])
   const [none,setNone] = useState(false);
   const [loading , setLoading] = useState(false);
+  const [tokens,setToken] = useState([]);
   const getQueue = async () =>{
     setLoading(true);
     const response = await fetch(`${API_URL}/api/queue/getQueue`);
@@ -16,6 +17,13 @@ const AdminDashboard = () => {
     setLoading(false);
     setNone(data.length>0);
   }
+
+  useEffect(()=>{
+    if(d.length>0){
+      getToken();
+    }
+  },[d])
+
   const notify = async () =>{
     if (d.length === 0){
       return;
@@ -23,7 +31,9 @@ const AdminDashboard = () => {
     const updatedQueue = d.map((item,index)=> (
       index===0 ? { ...item , status : "Completed"} : item
     ));
+    await sendNotification();
     setD(updatedQueue);
+
     setTimeout(async ()=>{
       console.log(d[0].userId);
       const response = await fetch(`${API_URL}/api/queue/delete`,{
@@ -54,6 +64,37 @@ const AdminDashboard = () => {
     const interval = setInterval(getQueue,5000);
     return () => clearInterval(interval);
   },[]);
+
+  const getToken = async () =>{
+    console.log("FCM token request.");
+    const res = await fetch(`${API_URL}/api/user/getToken`,{
+      method : "POST",
+      headers : {
+        'content-type' : 'application/json'
+      },
+      body : JSON.stringify({userId : d[0]._id})
+    })
+    const result = await res.json();
+    console.log(result);
+    setToken(result);
+  }
+
+  const sendNotification = async () =>{
+    const res = await fetch(`${API_URL}/api/queue/notify`,{
+      method : "POST",
+      headers : {
+        'content-type' : 'application/json'
+      },
+      body : JSON.stringify({
+        title : "Order Update",
+        body : "Your order is ready!",
+        token : tokens
+      })
+    });
+    const result = await res.json();
+    console.log(result);
+  }
+
   
   return (
     <div className='admin'>

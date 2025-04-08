@@ -15,15 +15,15 @@ exports.joinQueue = async (req,res) =>{
 
 exports.saveToken = async (req,res) =>{
   try{
-    const {userId , fcmtoken } = req.body;
+    const {userId , token } = req.body;
     // console.log(req.body)
     const updatedUser = await User.findOneAndUpdate(
-      { userId },
-      { $addToSet : {fcmtokens : fcmtoken} },
+      { _id : userId },
+      { $addToSet : {fcmtokens : token} },
       { new : true }
     )
     // console.log(updatedUser)
-    const updatedQueue = await Queue.findOneAndUpdate({userId} , {fcmtoken} , {new : true});
+    const updatedQueue = await Queue.findOneAndUpdate({userId} , {token} , {new : true});
     res.status(200).json({
       message: "FCM Token saved!",
       user: updatedUser,
@@ -59,6 +59,25 @@ exports.deleteQ = async (req,res) =>{
     console.log("Error in notifying the user - ",err);
   }
 }
+
+exports.notify = async (req,res) =>{
+  const { title , body , tokens } = req.body;
+  const message = {
+    notification : {
+      title,
+      body,
+    },
+    tokens : tokens
+  };
+  try {
+    const response = await admin.messaging().sendEachForMulticast(message);
+    res.status(200).json({ success: true, response });
+  } catch (error) {
+    console.error("Notification error:", error);
+    res.status(500).json({ error: error.message });
+  }
+}
+
 
 
 // module.exports = { joinQueue,saveToken };

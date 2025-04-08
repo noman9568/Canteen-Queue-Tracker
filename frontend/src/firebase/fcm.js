@@ -15,7 +15,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const messaging = getMessaging(app);
 
-export const requestForToken = async (setTokenFound) => {
+export const requestForToken = async (setTokenFound , setfcmToken) => {
   try {
     // ✅ Register Service Worker FIRST and wait until it's ready
     const registration = await navigator.serviceWorker.register("/firebase-messaging-sw.js");
@@ -27,7 +27,8 @@ export const requestForToken = async (setTokenFound) => {
     });
 
     if (token) {
-      // console.log("FCM Token:", token);
+      console.log("FCM Token:", token);
+      setfcmToken(token);
       setTokenFound(true);
     } else {
       console.log("No registration token available.");
