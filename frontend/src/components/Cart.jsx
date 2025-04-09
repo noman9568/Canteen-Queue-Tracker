@@ -11,6 +11,7 @@ const Cart = ({ setCartCount , id }) =>{
     const tempAmount = items.reduce((acc,element) =>  acc += element.quantity * element.price,0);
     setAmount(tempAmount);
     setCartitems(items);
+    console.log(items);
     setCartCount(items.reduce((acc, item) => acc + item.quantity, 0));
   }
   useEffect(()=>{
@@ -65,7 +66,7 @@ const Cart = ({ setCartCount , id }) =>{
           <p style={{ color : "#ff3a3a" , fontSize : '1.4rem' , fontWeight : "500"}}>Cart is Empty!</p>
         ) : (
           cartitems.map((element) =>(
-            <div className="cart-item" key={element.id}>
+            <div className="cart-item" key={element.dishId}>
               <p>{element.name}</p>
               <span className="item-price-quantity">
                 <span className="item-price">₹ {element.price}</span>
@@ -99,7 +100,7 @@ const Cart = ({ setCartCount , id }) =>{
             <div className="total-bill">To pay <span>₹ {amount}</span></div>
             <div className="item-bill">
               {cartitems.map((element) =>(
-                <div className="bill-box-item" key={element.id}>
+                <div className="bill-box-item" key={element.dishId}>
                   <span>{element.name}</span><span>{element.quantity} x {element.price}</span>
                 </div>
               ))}

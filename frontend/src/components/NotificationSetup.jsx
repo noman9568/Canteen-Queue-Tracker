@@ -27,7 +27,7 @@ const NotificationSetup = ({ children }) => {
         // console.log("Foreground notification: ", payload);
 
         const { title, body } = payload.notification;
-        if (Notification.permission === "granted") {
+        if (Notification.permission === "granted" && isTokenFound) {
           new Notification(title, {body});
         }
         alert(`${title}\n${body}`);
@@ -55,7 +55,7 @@ const NotificationSetup = ({ children }) => {
         body : JSON.stringify({token : fcmtoken, userId : decoded.userId})
       })
       const result = await response.json();
-      // console.log(result);
+      console.log(result);
     }
     catch(error) {
       console.error("Error in saving the token : ",error);

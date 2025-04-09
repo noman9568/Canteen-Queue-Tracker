@@ -2,6 +2,7 @@ const Queue = require('../models/queue');
 const User = require('../models/user');
 const Order = require('../models/order');
 const admin = require("firebase-admin");
+const mongoose = require("mongoose");
 
 
 exports.joinQueue = async (req,res) =>{
@@ -23,11 +24,7 @@ exports.saveToken = async (req,res) =>{
     )
     // console.log(updatedUser)
     const updatedQueue = await Queue.findOneAndUpdate({userId} , {token} , {new : true});
-    res.status(200).json({
-      message: "FCM Token saved!",
-      user: updatedUser,
-      queue: updatedQueue
-    });
+    res.status(200).json({ message: "FCM Token saved!" });
   }
   catch(error){
     res.status(500).json({message : "Error while saving the token - ", error : error.message})
@@ -47,8 +44,10 @@ exports.getQueue = async (req,res) =>{
 exports.deleteQ = async (req,res) =>{
   try {
     const { _id , userId } = req.body;
-    const order = await Order.findOneAndUpdate({userId},{status : "Completed"},{new : true});
-    // console.log(order);
+    // console.log("delete Q - ",req.body);
+    const objectUserId = new mongoose.Types.ObjectId(userId);
+    const order = await Order.findOneAndUpdate({userId : objectUserId},{status : "Completed"},{ new: true, sort: { createdAt: -1 } });
+    // console.log("Delete Queue - ",order);
     const data = await Queue.findByIdAndDelete({_id});
     const io = req.app.get("io");
     io.emit('updatedQueue',await Queue.find());

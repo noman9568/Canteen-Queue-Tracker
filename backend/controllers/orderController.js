@@ -24,6 +24,7 @@ exports.placeOrder = async (req,res) =>{
       })),
       totalAmount
     });
+    // console.log("New order - ",newOrder);
 
 
     const order = await razorpay.orders.create({

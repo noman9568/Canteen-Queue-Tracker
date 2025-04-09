@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import socket from './Socket';
-import "../admindashboard.css"
-import { data } from 'react-router-dom';
+import "../admindashboard.css";
 const API_URL = import.meta.env.VITE_BACKEND_API_URL;
 
 const AdminDashboard = () => {
   const [d,setD] = useState([])
   const [none,setNone] = useState(false);
   const [loading , setLoading] = useState(false);
+  const [notifying,setNotifiying] = useState(false);
   const getQueue = async () =>{
     setLoading(true);
     const response = await fetch(`${API_URL}/api/queue/getQueue`);
@@ -19,19 +19,19 @@ const AdminDashboard = () => {
 
 
   const notify = async () =>{
+    setNotifiying(true);
     if (d.length === 0){
       return;
     }
-
+    const currentUser = d[0];
     const res = await fetch(`${API_URL}/api/user/getToken`,{
       method : "POST",
       headers : {
         'content-type' : 'application/json'
       },
-      body : JSON.stringify({userId : d[0].userId})
+      body : JSON.stringify({userId : currentUser.userId})
     })
     const tokens = await res.json();
-    // console.log(tokens);
 
 
     const updatedQueue = d.map((item,index)=> (
@@ -41,17 +41,18 @@ const AdminDashboard = () => {
     setD(updatedQueue);
 
     setTimeout(async ()=>{
-      // console.log(d[0].userId);
+      console.log(d[0].userId);
       const response = await fetch(`${API_URL}/api/queue/delete`,{
         method : "POST",
         headers :{
           "Content-Type" : "application/json"
         },
-        body: JSON.stringify({_id : d[0]._id , userId : d[0].userId})
+        body: JSON.stringify({_id : currentUser._id , userId : currentUser.userId})
       })
       if(response.ok){
         getQueue();
       }
+      setNotifiying(false);
     },1500);
   }
   
@@ -60,7 +61,7 @@ const AdminDashboard = () => {
     getQueue();
     socket.on("updatedQueue",(dataR)=>{
       setD(dataR)
-      setNone(data.length>0);
+      setNone(dataR.length>0);
     })
     return () => {
       socket.off("updatedQueue");
@@ -73,8 +74,6 @@ const AdminDashboard = () => {
 
 
   const sendNotification = async (tokens) =>{
-    // console.log("Sending the notification.");
-    // console.log("Notification tokens - ",tokens);
     const res = await fetch(`${API_URL}/api/queue/notify`,{
       method : "POST",
       headers : {
@@ -86,8 +85,9 @@ const AdminDashboard = () => {
         tokens : tokens,
       })
     });
-    const result = await res.json();
-    console.log("Response from the backend - ,",result);
+    if(res.ok) {
+      console.log("Notification sent.");
+    }
   }
 
   
@@ -101,7 +101,7 @@ const AdminDashboard = () => {
           <div>No orders in the queue</div>
         ) : (
           d.map((item, index) => (
-            <div className='item'>
+            <div className='item' key={item._id}>
               <div key={index} className='item-name'>{item.name}<span>ID:{item._id}</span></div>
               <div className="item-status" style={{ color : item.status==='waiting' ? "red" : "green" }}>{item.status}</div>
             </div>
@@ -109,11 +109,12 @@ const AdminDashboard = () => {
         )
       )}
       <div className='notify-btn'>
-        {/* <button onClick={getQueue}>Hello</button> */}
-        <button onClick={notify} disabled={!none}>Notify</button>
+        <button onClick={notify} disabled={!none || notifying}>
+          {notifying ? "Notifying..." : "Notify"}
+        </button>
       </div>
     </div>
   )
 }
 
-export default AdminDashboard
+export default AdminDashboard;

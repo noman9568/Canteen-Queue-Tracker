@@ -8,17 +8,7 @@ const Dashboard = () => {
   const [d,setD] = useState([]);
   const [loading , setLoading] = useState(false);
 
-  
 
-  // const data = {
-  //   Id: id,
-  //   name:'nothing',
-  //   fcmtoken : '2022'
-  // }
-  // const joinQ = async ()=>{
-  //   socket.emit("joinQueue", data);
-  //   setjoined(true)
-  // }
   const getQueue = async () =>{
     try {
       setLoading(true);
