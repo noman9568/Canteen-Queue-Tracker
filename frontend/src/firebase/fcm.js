@@ -28,6 +28,7 @@ export const requestForToken = async (setTokenFound , setfcmToken) => {
 
     if (token) {
       // console.log("FCM Token:", token);
+      alert(token);
       setfcmToken(token);
       setTokenFound(true);
     } else {
