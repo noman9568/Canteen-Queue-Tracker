@@ -27,6 +27,12 @@ const NotificationSetup = ({ children }) => {
       .then(payload => {
         console.log("Foreground notification: ", payload);
         setNotification(payload);
+
+        const { title, body } = payload.notification;
+        if (Notification.permission === "granted") {
+          new Notification(title, {body});
+        }
+        alert(`${title}\n${body}`);
       })
       .catch(err => console.log("Failed: ", err));
   }, []);
@@ -57,12 +63,6 @@ const NotificationSetup = ({ children }) => {
   return (
     <>
       {children}
-      {notification && (
-        <div className="notification">
-          <p><strong>{notification.notification.title}</strong></p>
-          <p>{notification.notification.body}</p>
-        </div>
-      )}
     </>
   );
 };
