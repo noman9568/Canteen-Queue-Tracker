@@ -3,7 +3,6 @@ import { requestForToken, onMessageListener } from "../firebase/fcm";
 import { jwtDecode } from "jwt-decode";
 
 const NotificationSetup = ({ children }) => {
-  const [notification, setNotification] = useState(null);
   const [isTokenFound, setTokenFound] = useState(false);
   const [fcmtoken,setfcmToken] = useState('');
   const [decoded,setDecoded] = useState(null);
@@ -25,8 +24,7 @@ const NotificationSetup = ({ children }) => {
     requestForToken(setTokenFound , setfcmToken);
     onMessageListener()
       .then(payload => {
-        console.log("Foreground notification: ", payload);
-        setNotification(payload);
+        // console.log("Foreground notification: ", payload);
 
         const { title, body } = payload.notification;
         if (Notification.permission === "granted") {

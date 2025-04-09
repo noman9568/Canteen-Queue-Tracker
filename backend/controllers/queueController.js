@@ -61,7 +61,7 @@ exports.deleteQ = async (req,res) =>{
 
 exports.notify = async (req,res) =>{
   const { title , body , tokens } = req.body;
-  console.log("Token from the user - ",tokens);
+  // console.log("Token from the user - ",tokens);
   const message = {
     notification : {
       title,
