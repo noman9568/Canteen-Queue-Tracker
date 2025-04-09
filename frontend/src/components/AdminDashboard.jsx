@@ -8,7 +8,6 @@ const AdminDashboard = () => {
   const [d,setD] = useState([])
   const [none,setNone] = useState(false);
   const [loading , setLoading] = useState(false);
-  const [tokens,setToken] = useState([]);
   const getQueue = async () =>{
     setLoading(true);
     const response = await fetch(`${API_URL}/api/queue/getQueue`);
@@ -18,24 +17,31 @@ const AdminDashboard = () => {
     setNone(data.length>0);
   }
 
-  useEffect(()=>{
-    if(d.length>0){
-      getToken();
-    }
-  },[d])
 
   const notify = async () =>{
     if (d.length === 0){
       return;
     }
+
+    const res = await fetch(`${API_URL}/api/user/getToken`,{
+      method : "POST",
+      headers : {
+        'content-type' : 'application/json'
+      },
+      body : JSON.stringify({userId : d[0].userId})
+    })
+    const tokens = await res.json();
+    // console.log(tokens);
+
+
     const updatedQueue = d.map((item,index)=> (
       index===0 ? { ...item , status : "Completed"} : item
     ));
-    await sendNotification();
+    await sendNotification(tokens);
     setD(updatedQueue);
 
     setTimeout(async ()=>{
-      console.log(d[0].userId);
+      // console.log(d[0].userId);
       const response = await fetch(`${API_URL}/api/queue/delete`,{
         method : "POST",
         headers :{
@@ -65,21 +71,10 @@ const AdminDashboard = () => {
     return () => clearInterval(interval);
   },[]);
 
-  const getToken = async () =>{
-    console.log("FCM token request.");
-    const res = await fetch(`${API_URL}/api/user/getToken`,{
-      method : "POST",
-      headers : {
-        'content-type' : 'application/json'
-      },
-      body : JSON.stringify({userId : d[0]._id})
-    })
-    const result = await res.json();
-    console.log(result);
-    setToken(result);
-  }
 
-  const sendNotification = async () =>{
+  const sendNotification = async (tokens) =>{
+    // console.log("Sending the notification.");
+    // console.log("Notification tokens - ",tokens);
     const res = await fetch(`${API_URL}/api/queue/notify`,{
       method : "POST",
       headers : {
@@ -88,11 +83,11 @@ const AdminDashboard = () => {
       body : JSON.stringify({
         title : "Order Update",
         body : "Your order is ready!",
-        token : tokens
+        tokens : tokens,
       })
     });
     const result = await res.json();
-    console.log(result);
+    console.log("Response from the backend - ,",result);
   }
 
   

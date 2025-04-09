@@ -1,11 +1,11 @@
 const Queue = require('../models/queue');
 const User = require('../models/user');
 const Order = require('../models/order');
+const admin = require("firebase-admin");
 
 
 exports.joinQueue = async (req,res) =>{
   const { userId , fcmtoken } = req.body;
-  // console.log(req.body);
   const user = await User.findOne({ _id : userId });
   const name = user.name;
   // console.log(user);
@@ -16,7 +16,6 @@ exports.joinQueue = async (req,res) =>{
 exports.saveToken = async (req,res) =>{
   try{
     const {userId , token } = req.body;
-    // console.log(req.body)
     const updatedUser = await User.findOneAndUpdate(
       { _id : userId },
       { $addToSet : {fcmtokens : token} },
@@ -49,7 +48,7 @@ exports.deleteQ = async (req,res) =>{
   try {
     const { _id , userId } = req.body;
     const order = await Order.findOneAndUpdate({userId},{status : "Completed"},{new : true});
-    console.log(order);
+    // console.log(order);
     const data = await Queue.findByIdAndDelete({_id});
     const io = req.app.get("io");
     io.emit('updatedQueue',await Queue.find());
@@ -62,6 +61,7 @@ exports.deleteQ = async (req,res) =>{
 
 exports.notify = async (req,res) =>{
   const { title , body , tokens } = req.body;
+  console.log("Token from the user - ",tokens);
   const message = {
     notification : {
       title,

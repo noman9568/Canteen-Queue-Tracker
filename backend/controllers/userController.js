@@ -82,13 +82,16 @@ exports.userData = async (req,res) =>{
 exports.getToken = async (req,res) =>{
   try {
     const {userId} = req.body;
+    // console.log(userId);
     const token = await User.findOne({_id : userId}).select("fcmtokens");
-    if(user.fcmtokens.length=== 0) {
+    // console.log(token)
+    if(token.fcmtokens.length=== 0) {
       return res.status(404).json({message : "No fcm tokens found."});
     }
-    res.status(200).json(token);
+    res.status(200).json(token.fcmtokens);
   }
   catch(error) {
+    console.error(error);
     res.status(500).json({message : "Error in fetching the tokens."});
   }
 }
