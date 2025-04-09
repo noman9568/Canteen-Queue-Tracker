@@ -22,7 +22,7 @@ const NotificationSetup = ({ children }) => {
 
   useEffect(() => {
     requestForToken(setTokenFound , setfcmToken);
-    onMessageListener()
+    const unsubscribe = onMessageListener()
       .then(payload => {
         // console.log("Foreground notification: ", payload);
 
@@ -33,6 +33,10 @@ const NotificationSetup = ({ children }) => {
         alert(`${title}\n${body}`);
       })
       .catch(err => console.log("Failed: ", err));
+
+      return () => {
+        if (typeof unsubscribe === 'function') unsubscribe();
+      };
   }, []);
 
   useEffect(()=>{
