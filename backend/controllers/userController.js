@@ -42,7 +42,7 @@ exports.login = async (req,res) =>{
     if(fcmtoken){
       await User.findOneAndUpdate(
         {userId},
-        { $addToSet : {fcmtokens : fcmtoken} },
+        { $set : {fcmtokens : [fcmtoken]} },
         { new : true }
       );
     }
