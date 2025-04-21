@@ -11,6 +11,7 @@ exports.joinQueue = async (req,res) =>{
   const name = user.name;
   // console.log(user);
   const newUser = await Queue.create({userId , name , fcmtoken});
+  // console.log(newUser);
   const io = req.app.get("io");
   io.emit('updatedQueue',await Queue.find());
   res.status(200).json(newUser)
@@ -21,7 +22,7 @@ exports.saveToken = async (req,res) =>{
     const {userId , token } = req.body;
     const updatedUser = await User.findOneAndUpdate(
       { _id : userId },
-      { $addToSet : {fcmtokens : token} },
+      { fcmtokens : [token] },
       { new : true }
     )
     // console.log(updatedUser)
@@ -46,10 +47,8 @@ exports.getQueue = async (req,res) =>{
 exports.deleteQ = async (req,res) =>{
   try {
     const { _id , userId } = req.body;
-    // console.log("delete Q - ",req.body);
     const objectUserId = new mongoose.Types.ObjectId(userId);
     const order = await Order.findOneAndUpdate({userId : objectUserId},{status : "Completed"},{ new: true, sort: { createdAt: -1 } });
-    // console.log("Delete Queue - ",order);
     const data = await Queue.findByIdAndDelete({_id});
     const io = req.app.get("io");
     io.emit('updatedQueue',await Queue.find());
@@ -62,7 +61,7 @@ exports.deleteQ = async (req,res) =>{
 
 exports.notify = async (req,res) =>{
   const { title , body , tokens } = req.body;
-  // console.log("Token from the user - ",tokens);
+  console.log("Token from the user - ",tokens);
   const message = {
     notification : {
       title,

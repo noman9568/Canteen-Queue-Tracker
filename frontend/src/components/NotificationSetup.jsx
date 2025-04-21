@@ -22,21 +22,21 @@ const NotificationSetup = ({ children }) => {
 
   useEffect(() => {
     requestForToken(setTokenFound , setfcmToken);
-    const unsubscribe = onMessageListener()
-      .then(payload => {
-        // console.log("Foreground notification: ", payload);
-
-        const { title, body } = payload.notification;
+    const setupListener = async () => {
+      try {
+        const payloadHandler = await onMessageListener();
+        const { title, body } = payloadHandler.notification;
         if (Notification.permission === "granted" && isTokenFound) {
           new Notification(title, {body});
         }
         alert(`${title}\n${body}`);
-      })
-      .catch(err => console.log("Failed: ", err));
+      }
+      catch (err) {
+        console.log("Failed to receive notification - ",err);
+      }
+    };
+    setupListener();
 
-      return () => {
-        if (typeof unsubscribe === 'function') unsubscribe();
-      };
   }, []);
 
   useEffect(()=>{

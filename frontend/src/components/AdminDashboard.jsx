@@ -41,7 +41,7 @@ const AdminDashboard = () => {
     setD(updatedQueue);
 
     setTimeout(async ()=>{
-      console.log(d[0].userId);
+      console.log(currentUser.userId);
       const response = await fetch(`${API_URL}/api/queue/delete`,{
         method : "POST",
         headers :{
@@ -59,7 +59,7 @@ const AdminDashboard = () => {
   
   useEffect(()=>{
     getQueue();
-
+    // console.log("Socket connected?", socket.connected);
     socket.on("updatedQueue",(dataR)=>{
       setD(dataR)
       console.log("Updating the data");

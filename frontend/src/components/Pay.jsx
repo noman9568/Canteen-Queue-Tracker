@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { getMessaging, getToken } from "firebase/messaging";
+import { getToken } from "firebase/messaging";
 import { messaging } from "../firebase/fcm";
 const API_URL = import.meta.env.VITE_BACKEND_API_URL;
 
@@ -58,7 +58,8 @@ const Pay = ({cartitems,amount , id}) =>{
         order_id: orderData.id, // Order ID from Razorpay API
         handler: async (response) => {
           alert("Payment Successful!",response);
-          await fetch(`${API_URL}/api/order/saveOrder`, {
+          console.log(response);
+          const res = await fetch(`${API_URL}/api/order/saveOrder`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -67,7 +68,8 @@ const Pay = ({cartitems,amount , id}) =>{
               orderAmount: orderData.amount,
             }),
           });
-          // console.log(response);
+          const ab = await res.json()
+          console.log(ab);
 
           const fcmtoken = await getFCMToken();
           const userId = id;

@@ -17,7 +17,8 @@ const server = http.createServer(app)
 
 const allowedOrigins = [
   "https://canteen-queue-tracker.vercel.app",
-  "https://canteen-queue-tracker-production.up.railway.app"
+  "https://canteen-queue-tracker-production.up.railway.app",
+  "http://localhost:5173"
 ];
 
 app.use((req, res, next) => {
@@ -27,7 +28,7 @@ app.use((req, res, next) => {
 });
 
 app.use(cors({
-  origin: '*',
+  origin: allowedOrigins,
   credentials: true,
 }));
 app.options("*", cors());
