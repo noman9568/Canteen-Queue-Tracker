@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { getMessaging, getToken } from "firebase/messaging";
+import { messaging } from "../firebase/fcm";
 const API_URL = import.meta.env.VITE_BACKEND_API_URL;
 
 const Pay = ({cartitems,amount , id}) =>{
@@ -20,6 +22,18 @@ const Pay = ({cartitems,amount , id}) =>{
     loadRazorpay();
   },[]);
 
+  const getFCMToken = async () => {
+    try {
+      const currentToken = await getToken(messaging, {
+        vapidKey: import.meta.env.VITE_FIREBASE_VAPID_KEY,
+      });
+      return currentToken;
+    } catch (error) {
+      console.error("Error fetching FCM token:", error);
+      return null;
+    }
+  };
+
 
   const payment = async () =>{
     if(!token){
@@ -30,7 +44,7 @@ const Pay = ({cartitems,amount , id}) =>{
       const response = await fetch(`${API_URL}/api/order/placeOrder`,{
         method : "POST",
         headers : {
-          "content-Type" : "application/json"
+          "Content-Type" : "application/json"
         },
         body : JSON.stringify({cartitems,token}),
       });
@@ -44,9 +58,19 @@ const Pay = ({cartitems,amount , id}) =>{
         order_id: orderData.id, // Order ID from Razorpay API
         handler: async (response) => {
           alert("Payment Successful!",response);
+          await fetch(`${API_URL}/api/order/saveOrder`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              token,
+              response,
+              orderAmount: orderData.amount,
+            }),
+          });
           // console.log(response);
+
+          const fcmtoken = await getFCMToken();
           const userId = id;
-          const fcmtoken = '3489yrnf3f';
 
           await fetch(`${API_URL}/api/queue/join`,{
             method: "POST",
@@ -60,7 +84,6 @@ const Pay = ({cartitems,amount , id}) =>{
         prefill: {
           name: "Testing",
           email: "customer@example.com",
-          contact : "",
         },
         readonly: {
           contact : true,

@@ -11,6 +11,8 @@ exports.joinQueue = async (req,res) =>{
   const name = user.name;
   // console.log(user);
   const newUser = await Queue.create({userId , name , fcmtoken});
+  const io = req.app.get("io");
+  io.emit('updatedQueue',await Queue.find());
   res.status(200).json(newUser)
 };
 

@@ -30,7 +30,7 @@ exports.register = async (req,res) =>{
 
 exports.login = async (req,res) =>{
   try{
-    const { userId , password , fcmtoken } = req.body;
+    const { userId , password } = req.body;
     const oldUser = await User.findOne({userId});
     if(!oldUser){
       return res.status(400).json({message : "User does not exist!"});
@@ -39,13 +39,7 @@ exports.login = async (req,res) =>{
     if(!passwordCheck){
       return res.status(401).json({message : 'Invalid credentials!'});
     }
-    if(fcmtoken){
-      await User.findOneAndUpdate(
-        {userId},
-        { $set : {fcmtokens : [fcmtoken]} },
-        { new : true }
-      );
-    }
+    
     const inQueue = await Queue.findOne({admissionNo : userId});
     const token = await jwt.sign({userId : oldUser._id ,role : oldUser.role, timestamp: Date.now()},process.env.JWT_SECRET,{
       expiresIn : '1.5h',

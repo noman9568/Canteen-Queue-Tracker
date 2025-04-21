@@ -1,6 +1,7 @@
 const Razorpay = require('razorpay');
 const Order = require("../models/order");
 const jwt = require("jsonwebtoken");
+const Queue = require("../models/queue");
 
 const razorpay = new Razorpay({
   key_id: process.env.RAZORPAY_KEY_ID,
@@ -52,7 +53,7 @@ exports.saveOrder = async (req,res) =>{
       orderId : response.razorpay_order_id,
       amount : orderAmount/100
     });
-    console.log(order);
+    // console.log(order);
 
   }
   catch(error) {

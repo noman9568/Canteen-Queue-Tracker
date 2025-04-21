@@ -4,25 +4,25 @@ import "../admindashboard.css";
 const API_URL = import.meta.env.VITE_BACKEND_API_URL;
 
 const AdminDashboard = () => {
-  const [d,setD] = useState([])
+  const [d,setD] = useState([]);
   const [none,setNone] = useState(false);
   const [loading , setLoading] = useState(false);
   const [notifying,setNotifiying] = useState(false);
   const getQueue = async () =>{
     setLoading(true);
     const response = await fetch(`${API_URL}/api/queue/getQueue`);
-    const data = await response.json()
-    setD(data)
+    const data = await response.json();
+    setD(data);
     setLoading(false);
     setNone(data.length>0);
   }
 
 
   const notify = async () =>{
-    setNotifiying(true);
-    if (d.length === 0){
+    if (notifying || d.length === 0){
       return;
     }
+    setNotifiying(true);
     const currentUser = d[0];
     const res = await fetch(`${API_URL}/api/user/getToken`,{
       method : "POST",
@@ -33,11 +33,11 @@ const AdminDashboard = () => {
     })
     const tokens = await res.json();
 
-
+    await sendNotification(tokens);
     const updatedQueue = d.map((item,index)=> (
       index===0 ? { ...item , status : "Completed"} : item
     ));
-    await sendNotification(tokens);
+    
     setD(updatedQueue);
 
     setTimeout(async ()=>{
@@ -59,21 +59,23 @@ const AdminDashboard = () => {
   
   useEffect(()=>{
     getQueue();
+
     socket.on("updatedQueue",(dataR)=>{
       setD(dataR)
+      console.log("Updating the data");
       setNone(dataR.length>0);
     })
     return () => {
       socket.off("updatedQueue");
     };
   },[])
-  useEffect(()=>{
-    const interval = setInterval(getQueue,5000);
-    return () => clearInterval(interval);
-  },[]);
+  // useEffect(()=>{
+  //   const interval = setInterval(getQueue,5000);
+  //   return () => clearInterval(interval);
+  // },[]);
 
 
-  const sendNotification = async (tokens) =>{
+  const sendNotification = async (token) =>{
     const res = await fetch(`${API_URL}/api/queue/notify`,{
       method : "POST",
       headers : {
@@ -82,7 +84,7 @@ const AdminDashboard = () => {
       body : JSON.stringify({
         title : "Order Update",
         body : "Your order is ready!",
-        tokens : tokens,
+        tokens : token,
       })
     });
     if(res.ok) {

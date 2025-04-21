@@ -40,6 +40,7 @@ const NotificationSetup = ({ children }) => {
   }, []);
 
   useEffect(()=>{
+    console.log("Token send")
     if(fcmtoken && decoded?.userId) {
       sendToken(fcmtoken);
     }

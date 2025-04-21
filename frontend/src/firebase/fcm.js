@@ -13,7 +13,7 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-const messaging = getMessaging(app);
+export const messaging = getMessaging(app);
 
 export const requestForToken = async (setTokenFound , setfcmToken) => {
   try {
