@@ -68,11 +68,7 @@ const AdminDashboard = () => {
     return () => {
       socket.off("updatedQueue");
     };
-  },[])
-  // useEffect(()=>{
-  //   const interval = setInterval(getQueue,5000);
-  //   return () => clearInterval(interval);
-  // },[]);
+  },[]);
 
 
   const sendNotification = async (token) =>{
@@ -100,7 +96,7 @@ const AdminDashboard = () => {
       <div className='loading-spinner'>Loading orders...</div>
       ) : (
         d.length === 0 ? (
-          <div>No orders in the queue</div>
+          <div className='no-order'>No orders in the queue</div>
         ) : (
           d.map((item, index) => (
             <div className='item' key={item._id}>

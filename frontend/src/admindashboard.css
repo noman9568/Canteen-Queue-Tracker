@@ -55,8 +55,12 @@ h1{
   color: rgb(76, 15, 15);
 }
 .loading-spinner{
-  font-size: 1.4rem;
-  margin-top: 1.5rem;
+  font-size: 1.5rem;
+  margin-top: 2.5rem;
+}
+.no-order{
+  margin-top: 2.5rem;
+  font-size: 1.5rem;
 }
 .dashboard-header{
   font-size: 2.5rem;
@@ -67,10 +71,11 @@ h1{
 .notify-btn button{
   margin-top: 3rem;
   border: 1px solid rgb(104, 104, 104);
+  background-color: white;
   box-shadow: 0 2px 4px rgb(101, 101, 101,0.5);
 }
 .notify-btn button:hover{
-  background-color: rgb(97, 227, 119);
+  background-color: rgb(120, 232, 139);
   color: rgb(27, 27, 27);
 }
 

@@ -6,6 +6,7 @@ const Profile = () => {
   const [data, setData] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [editBlock,setEditBlock] = useState(false);
   
   const API_URL = import.meta.env.VITE_BACKEND_API_URL;
   
@@ -85,6 +86,22 @@ const Profile = () => {
       .toUpperCase()
       .substring(0, 2);
   };
+  const toggleEdit = () =>{
+    setEditBlock(!editBlock);
+  }
+
+  const updateDetails = async () =>{
+    const response = await fetch(`${API_URL}/api/user/update`,{
+      method : "POST",
+      headers : {
+        "Content-Type" : "application/json"
+      },
+      body : JSON.stringify({name:data.name , email : data.email , id : data._id})
+    });
+    const res = await response.json();
+    // console.log(res);
+  }
+
   
   return (
     <div className="profile-page">
@@ -134,7 +151,7 @@ const Profile = () => {
             </div>
           </div>
           
-          {data.fcmtokens && data.fcmtokens.length > 0 && (
+          {/* {data.fcmtokens && data.fcmtokens.length > 0 && (
             <div className="info-card devices-card">
               <h2>Device Management</h2>
               <div className="devices-container">
@@ -148,14 +165,45 @@ const Profile = () => {
                 <button className="devices-button">Manage Devices</button>
               </div>
             </div>
-          )}
+          )} */}
           
           <div className="action-buttons">
-            <button className="edit-button">Edit Profile</button>
+            <button  onClick={toggleEdit} className="edit-profile">Edit Profile</button>
             <button className="password-button">Change Password</button>
           </div>
         </div>
       </div>
+      { editBlock && ( <div className="edit-profile-block">
+        <h2>Edit Profile</h2>
+          <div className="info-row">
+              <div className="info-label">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+                <span>Full Name</span>
+              </div>
+              <input type="text" value={data.name} onChange={(e) => setData({ ...data , name: e.target.value})}/>
+              {/* <div className="info-value">{data.name}</div> */}
+            </div>
+            
+            <div className="info-row">
+              <div className="info-label">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                  <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+                <span>Email</span>
+              </div>
+              <input type="text" value={data.email} onChange={(e) => setData({...data , name: e.target.value})} />
+              {/* <div className="info-value">{data.email}</div> */}
+            </div>
+            <div className="buttons">
+              <button onClick={() => {updateDetails(); toggleEdit()}}>Save</button>
+              <button onClick={toggleEdit}>Cancel</button>
+            </div>
+          </div> ) }
+      <div className={`screen-hover ${editBlock ? "active" : ""}`} onClick={toggleEdit}></div>
     </div>
   );
 };

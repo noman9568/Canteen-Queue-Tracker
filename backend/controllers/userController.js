@@ -90,3 +90,14 @@ exports.getToken = async (req,res) =>{
   }
 }
 
+exports.update = async (req,res) =>{
+  try {
+    const {name , email , id} = req.body;
+    const user = await User.findOneAndUpdate({_id : id},{name , email});
+    res.status(200).json({message : "User Data updated successfully."});
+  }
+  catch (err) {
+    res.status(401).json({error : "Error in updating user details.",err});
+  }
+} 
+

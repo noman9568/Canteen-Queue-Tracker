@@ -9,9 +9,8 @@ exports.joinQueue = async (req,res) =>{
   const { userId , fcmtoken } = req.body;
   const user = await User.findOne({ _id : userId });
   const name = user.name;
-  // console.log(user);
   const newUser = await Queue.create({userId , name , fcmtoken});
-  // console.log(newUser);
+
   const io = req.app.get("io");
   io.emit('updatedQueue',await Queue.find());
   res.status(200).json(newUser)
@@ -25,7 +24,7 @@ exports.saveToken = async (req,res) =>{
       { fcmtokens : [token] },
       { new : true }
     )
-    // console.log(updatedUser)
+
     const updatedQueue = await Queue.findOneAndUpdate({userId} , {token} , {new : true});
     res.status(200).json({ message: "FCM Token saved!" });
   }
@@ -61,7 +60,6 @@ exports.deleteQ = async (req,res) =>{
 
 exports.notify = async (req,res) =>{
   const { title , body , tokens } = req.body;
-  console.log("Token from the user - ",tokens);
   const message = {
     notification : {
       title,

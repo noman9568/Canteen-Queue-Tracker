@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import socket from './Socket';
 import '../admindashboard.css';
 import _ from "lodash";
 const API_URL = import.meta.env.VITE_BACKEND_API_URL;
+
 // here add {id}
 const Dashboard = () => {
   const [d,setD] = useState([]);
   const [loading , setLoading] = useState(false);
+  const prevQueueRef = useRef([]);
 
 
   const getQueue = async () =>{
@@ -14,12 +16,13 @@ const Dashboard = () => {
       setLoading(true);
       const response = await fetch(`${API_URL}/api/queue/getQueue`);
       const data = await response.json()
-      const prevId = d.map(item => item._id).sort();
+      const prevId = prevQueueRef.current.map(item => item._id).sort();
       const newId = data.map(item => item._id).sort();
       
       if(!_.isEqual(prevId,newId)){
         console.log("Updating the data.");
         setD(data);
+        prevQueueRef.current = data;
       }
     }
     catch(error) {
@@ -32,23 +35,23 @@ const Dashboard = () => {
   }
 
   useEffect(() => {
-    const interval = setInterval(getQueue,5000);
-    return () => clearInterval(interval);
+    getQueue();
   }, []);
 
   useEffect(()=>{
     const handleQueueUpdate = (dataR) => {
-      const prevId = d.map(item => item._id).sort();
+      const prevId = prevQueueRef.current.map(item => item._id).sort();
       const newId = dataR.map(item => item._id).sort();
       if(!_.isEqual(prevId,newId)){
         setD(dataR);
+        prevQueueRef.current = dataR;
       }
     };
     socket.on("updatedQueue",handleQueueUpdate)
     return () => {
       socket.off("updatedQueue",handleQueueUpdate);
     };
-  },[d])
+  },[])
   return (
     <div className='user'>
       <div className="dashboard-header">Queue Dashboard</div>
