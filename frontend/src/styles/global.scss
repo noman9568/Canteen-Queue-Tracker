@@ -439,7 +439,46 @@ section {
 }
 
 
+.orders p{
+  font-size: 1.4rem;
+}
 
+
+.images-scroller {
+  width: 100%;
+  height: 500px; /* Adjust as needed */
+  position: relative;
+  overflow: hidden; /* Essential for hiding other slides */
+  
+  /* Container for slides - needs to be wide enough */
+  .slider-track {
+    display: flex;
+    height: 100%;
+    width: 300%; /* 100% per image (3 images = 300%) */
+    animation: scroll 12s infinite linear;
+  }
+  
+  /* Individual slide */
+  .slide {
+    width: 33.333%; /* Each slide takes 1/3 of track */
+    height: 100%;
+    flex-shrink: 0;
+    
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+}
+
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-66.666%); } /* Move 2 slides (100% would move 3 slides) */
+}
+.images-scroller:hover {
+  animation-play-state: paused;
+}
 
 
 

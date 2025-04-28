@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import Card from "./Card";
+import first from "../assets/images/1.jpg";
+import second from "../assets/images/2.jpg";
+import third from "../assets/images/3.jpg";
 const API_URL = import.meta.env.VITE_BACKEND_API_URL;
 
 const Home = ({username , setCartCount , id}) => {
@@ -50,6 +53,13 @@ const Home = ({username , setCartCount , id}) => {
     <div className='home-container'>
       <div className="top">
         Welcome! {username}.
+      </div>
+      <div className="images-scroller">
+        <div className="slider-track">
+          <div className="slide"><img src={first} alt="food" /></div>
+          <div className="slide"><img src={second} alt="food" /></div>
+          <div className="slide"><img src={third} alt="food" /></div>
+        </div>
       </div>
       <div className='cardContainer'>
       {Array.isArray(dData) && dData.map((element) => (
