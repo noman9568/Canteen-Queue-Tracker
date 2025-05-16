@@ -5,6 +5,7 @@ import second from "../assets/images/2.jpg";
 import third from "../assets/images/3.jpg";
 const API_URL = import.meta.env.VITE_BACKEND_API_URL;
 
+
 const Home = ({username , setCartCount , id}) => {
 
   const [dData,setdata] = useState([]);
@@ -54,17 +55,62 @@ const Home = ({username , setCartCount , id}) => {
       <div className="top">
         Welcome! {username}.
       </div>
+      {/* <ImageSlider slides={slides} /> */}
       <div className="images-scroller">
         <div className="slider-track">
-          <div className="slide"><img src={first} alt="food" /></div>
-          <div className="slide"><img src={second} alt="food" /></div>
-          <div className="slide"><img src={third} alt="food" /></div>
+          <div className="slide"><img src={first} alt="food" key="1" /></div>
+          <div className="slide"><img src={second} alt="food" key="2" /></div>
+          <div className="slide"><img src={third} alt="food" key="3" /></div>
         </div>
       </div>
+      <p className='chinese'>Chinese</p>
       <div className='cardContainer'>
-      {Array.isArray(dData) && dData.map((element) => (
-        <Card key={element._id} id={id} dish={element} dishImage={element.image} setCartCount={setCartCount} dishName={element.name} dishPrice={element.price} dishQuantity={element.quantity}/>
-      ))}
+        {Array.isArray(dData) && dData.map((element) => {
+          if (element.category==="Chinese") {
+            return (
+              <React.Fragment key={element._id}>
+                {/* <p>Chinese</p> */}
+                <Card
+                  key={element._id}
+                  id={id}
+                  dish={element}
+                  dishImage={element.image}
+                  setCartCount={setCartCount}
+                  dishName={element.name}
+                  dishPrice={element.price}
+                  dishQuantity={element.quantity}
+                />
+              </React.Fragment>
+            )
+          }
+        }
+        )}
+      </div>
+      <p className='veg'>Veg Dishes</p>
+      <div className='cardContainer'>
+        {Array.isArray(dData) && dData.map((element) => {
+          if (element.category==="Veg Dishes") {
+            return (
+              <React.Fragment key={element._id}>
+                <Card
+                  key={element._id}
+                  id={id}
+                  dish={element}
+                  dishImage={element.image}
+                  setCartCount={setCartCount}
+                  dishName={element.name}
+                  dishPrice={element.price}
+                  dishQuantity={element.quantity}
+                />
+              </React.Fragment>
+            )
+          }
+        }
+        )}
+      </div>
+      
+      <div className="trademark">
+        <p>&copy; 2025 YourCompanyName™. All rights reserved.</p>
       </div>
     </div>
   )

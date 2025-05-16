@@ -55,7 +55,6 @@ connectDB();
 
 
 io.on('connection',(socket)=>{
-  // console.log("New user connected - ",socket.id);
   socket.on("joinQueue",async (data)=>{
     const newUser = await Queue.create({userId : socket.id , admissionNo : data.Id , name : data.name , fcmtoken : data.fcmtoken});
     // console.log(newUser)
