@@ -11,11 +11,12 @@
   --primary-light: #fff0f0;
   --text-dark: #333333;
   --transition-speed: 0.3s;
+  outline: 1px solid red;
 }
 /* Add these to your existing CSS */
 
 .home-container {
-  max-width: 1500px;
+  max-width: 100%;
   margin: 0 auto;
   // padding: 0 1rem;
 }
@@ -256,6 +257,10 @@ section {
   scrollbar-color: #ff3a3a #f0f0f0; /* Firefox - optional styling */
   -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
   cursor: grab; /* Visual cue for scrollability */
+}
+.load{
+  color: red;
+  font-weight: 400;
 }
 .chinese , .veg {
   font-size: 2.2rem;

@@ -8,7 +8,9 @@
   --border-color: #d1d5db;
   --white: #ffffff;
 }
-
+h1{
+  margin-top: 0.8rem;
+}
 .add-container {
   min-height: 80vh;
   display: flex;
@@ -63,7 +65,11 @@
     font-size: 1rem;
     padding: 0.1rem 0;
     font-family: "Montserrat",sans-serif;
+    background-color: white;
   }
+}
+input[type="file"] {
+  background-color: white;
 }
 select:focus{
   outline: 0;

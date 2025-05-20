@@ -10,8 +10,7 @@
 
 
 nav{
-  /* width: 100%; */
-  max-width: 1500px;
+  max-width: 100%;
   display: flex;
   align-items: center;
   gap: 1.45rem;

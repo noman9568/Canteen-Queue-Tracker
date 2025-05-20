@@ -9,6 +9,7 @@ const API_URL = import.meta.env.VITE_BACKEND_API_URL;
 const Home = ({username , setCartCount , id}) => {
 
   const [dData,setdata] = useState([]);
+  const [load,setload] = useState(true);
   useEffect(() =>{
     // console.log(id)
     const fetchData = async ()=>{
@@ -27,6 +28,7 @@ const Home = ({username , setCartCount , id}) => {
           
           return { ...item, image: imageBase64 };
         });
+        setload(false);
         setdata(updatedData);
         // console.log(updatedData)
       }
@@ -65,6 +67,7 @@ const Home = ({username , setCartCount , id}) => {
       </div>
       <p className='chinese'>Chinese</p>
       <div className='cardContainer'>
+        <h2 className='load' style={{display : load? "block" : "none"}}>Loading...</h2>
         {Array.isArray(dData) && dData.map((element) => {
           if (element.category==="Chinese") {
             return (
@@ -88,6 +91,7 @@ const Home = ({username , setCartCount , id}) => {
       </div>
       <p className='veg'>Veg Dishes</p>
       <div className='cardContainer'>
+        <h2 className='load' style={{display : load? "block" : "none"}}>Loading...</h2>
         {Array.isArray(dData) && dData.map((element) => {
           if (element.category==="Veg Dishes") {
             return (
