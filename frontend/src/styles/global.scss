@@ -12,24 +12,36 @@
   --text-dark: #333333;
   --transition-speed: 0.3s;
 }
+/* Add these to your existing CSS */
+
+.home-container {
+  max-width: 1500px;
+  margin: 0 auto;
+  // padding: 0 1rem;
+}
+
+
+
 
 .top{
-  font-size: 3rem;
+  font-size: 2.8rem;
   color: rgb(8, 68, 27);
-  padding: 1.5rem 0;
+  padding: 0.7rem 0;
   font-weight: 500;
   font-family: "Montserrat",sans-serif;
   border-radius: 6px;
-  background: url("/welcomeBack.jpg");
-  background-position: top;
+  // background: url("/welcomeBack.jpg");
+  // backdrop-filter: ;
+  // background-position: top;
+  background-color: rgb(108, 150, 236);
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
 }
 
 /* Card container with enhanced styling and animations */
 .card-container {
   min-height: 18rem;
-  width: 11rem;
-  border-radius: 12px;
+  width: 10rem;
+  border-radius: 10px;
   border: 1px solid #d7d7d7;
   display: flex;
   flex-direction: column;
@@ -37,9 +49,10 @@
   background-color: white;
   box-shadow: 0 1px 6px rgba(0, 0, 0, 0.15);
   transition: transform var(--transition-speed), box-shadow var(--transition-speed);
-  overflow: hidden;
+  // overflow: hidden;
   position: relative;
   margin-left: 0;
+  flex: 0 0 auto;
 }
 
 .card-hover {
@@ -66,6 +79,7 @@
   object-position: center;
   height: 100%;
   width: 100%;
+  border-radius: 4px;
   transition: transform 0.5s;
 }
 
@@ -232,12 +246,16 @@ section {
 /* Card container wrapper */
 .cardContainer {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap; /* Prevent wrapping to new lines */
+  overflow-x: auto; /* Enable horizontal scrolling */
+  overflow-y: hidden; /* Hide vertical scroll */
   gap: 1.5rem;
-  justify-content: flex-start;
-  padding: 0;
-  padding-bottom: 0.5rem;
-  max-width: 100%;
+  min-height: 18rem;
+  padding: 1rem 0; /* Add padding so last card isn't cut off */
+  scrollbar-width: thin; /* Firefox - optional styling */
+  scrollbar-color: #ff3a3a #f0f0f0; /* Firefox - optional styling */
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+  cursor: grab; /* Visual cue for scrollability */
 }
 .chinese , .veg {
   font-size: 2.2rem;
@@ -261,7 +279,8 @@ section {
   }
   
   .card-container {
-    width: 9.5rem;
+    width: 9.2rem;
+    border-radius: 8px;
     min-height: 16rem;
   }
   .image-box {
@@ -540,10 +559,22 @@ section {
   .images-scroller{
     height: 300px;
   }
+  .add-to-cart{
+    padding: 0.3rem 0;
+  }
+  .plus , .minus{
+    padding: 0.25rem 0.8rem;
+  }
 }
 @media (max-width:525px) {
   .card-container{
     width: 7rem;
+  }
+  .add-to-cart{
+    padding: 0.2rem 0;
+  }
+  .plus , .minus{
+    padding: 0.1rem 0.8rem;
   }
   .image-container{
     height: 9rem;
@@ -551,8 +582,14 @@ section {
   .orderDetail{
     width: 75%;
   }
+  .name{
+    margin: 0.2rem 0;
+  }
   .images-scroller{
     height: 200px;
+  }
+  .content-container{
+    margin-top: 0.2rem;
   }
 }
 @media (max-width:425px) {
