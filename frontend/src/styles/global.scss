@@ -11,7 +11,7 @@
   --primary-light: #fff0f0;
   --text-dark: #333333;
   --transition-speed: 0.3s;
-  outline: 1px solid red;
+  // outline: 1px solid red;
 }
 /* Add these to your existing CSS */
 
@@ -480,7 +480,7 @@ section {
 
 
 .images-scroller {
-  width: 100%;
+  max-width: 100%;
   height: 500px;
   border-radius: 0.2rem;
   border: 1px solid rgb(152, 152, 152);
