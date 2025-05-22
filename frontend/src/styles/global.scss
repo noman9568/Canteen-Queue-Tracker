@@ -39,22 +39,7 @@
 }
 
 /* Card container with enhanced styling and animations */
-.card-container {
-  min-height: 18rem;
-  width: 10rem;
-  border-radius: 10px;
-  border: 1px solid #d7d7d7;
-  display: flex;
-  flex-direction: column;
-  padding: 0.8rem;
-  background-color: white;
-  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.15);
-  transition: transform var(--transition-speed), box-shadow var(--transition-speed);
-  // overflow: hidden;
-  position: relative;
-  margin-left: 0;
-  flex: 0 0 auto;
-}
+
 
 .card-hover {
   transform: translateY(-5px);
@@ -244,22 +229,47 @@ section {
   cursor: not-allowed;
 }
 
+
+
+
 /* Card container wrapper */
 .cardContainer {
+  max-width: 100%;
   display: flex;
   flex-wrap: nowrap; /* Prevent wrapping to new lines */
-  overflow-x: auto; /* Enable horizontal scrolling */
-  overflow-y: hidden; /* Hide vertical scroll */
+  overflow-y: hidden;
+  overflow-x: auto; /* Hide vertical scroll */
   gap: 1.5rem;
   min-height: 18rem;
+  border: 2px solid red;
   padding: 1rem 0; /* Add padding so last card isn't cut off */
   scrollbar-width: thin; /* Firefox - optional styling */
   scrollbar-color: #ff3a3a #f0f0f0; /* Firefox - optional styling */
   -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
   cursor: grab; /* Visual cue for scrollability */
 }
-.load{
-  color: red;
+.card-container {
+  min-height: 18rem;
+  width: 10rem;
+  border-radius: 10px;
+  border: 1px solid #d7d7d7;
+  display: flex;
+  flex-direction: column;
+  padding: 0.8rem;
+  background-color: white;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.15);
+  transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+  // overflow: hidden;
+  position: relative;
+  margin-left: 0;
+  flex: 0 0 auto;
+}
+
+.load {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--primary-color);
   font-weight: 400;
 }
 .chinese , .veg {
@@ -597,7 +607,7 @@ section {
     margin-top: 0.2rem;
   }
 }
-@media (max-width:425px) {
+@media (max-width:450px) {
   .cart-item{
     width: 90%;
   }

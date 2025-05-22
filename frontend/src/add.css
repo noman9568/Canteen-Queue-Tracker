@@ -55,7 +55,7 @@ h1{
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  background-color: white;
+  background-color: var(--white);
   gap: 0.4rem;
   font-size: 1.1rem;
   label{
@@ -65,11 +65,12 @@ h1{
     font-size: 1rem;
     padding: 0.1rem 0;
     font-family: "Montserrat",sans-serif;
-    background-color: white;
+    background-color: var(--white);
+    color: black;
   }
 }
 input[type="file"] {
-  background-color: white;
+  background-color: var(--white);
 }
 select:focus{
   outline: 0;

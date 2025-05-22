@@ -29,7 +29,7 @@ const Home = ({username , setCartCount , id}) => {
           return { ...item, image: imageBase64 };
         });
         setload(false);
-        // setdata(updatedData);
+        setdata(updatedData);
         // console.log(updatedData)
       }
       catch(error) {
