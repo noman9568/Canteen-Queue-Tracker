@@ -33,7 +33,7 @@ const AdminDashboard = () => {
     })
     const tokens = await res.json();
 
-    await sendNotification(tokens);
+    await sendNotification(tokens[0]);
     const updatedQueue = d.map((item,index)=> (
       index===0 ? { ...item , status : "Completed"} : item
     ));

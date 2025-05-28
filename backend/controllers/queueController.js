@@ -65,7 +65,7 @@ exports.notify = async (req,res) =>{
       title,
       body,
     },
-    token : token[0]
+    token
   };
   try {
     const response = await admin.messaging().send(message);
