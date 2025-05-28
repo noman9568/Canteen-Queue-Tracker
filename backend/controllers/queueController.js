@@ -59,16 +59,16 @@ exports.deleteQ = async (req,res) =>{
 }
 
 exports.notify = async (req,res) =>{
-  const { title , body , tokens } = req.body;
+  const { title , body , token } = req.body;
   const message = {
     notification : {
       title,
       body,
     },
-    tokens : tokens
+    token : token[0]
   };
   try {
-    const response = await admin.messaging().sendEachForMulticast(message);
+    const response = await admin.messaging().send(message);
     res.status(200).json({ success: true, response });
   } catch (error) {
     console.error("Notification error:", error);

@@ -56,7 +56,7 @@ const NotificationSetup = ({ children }) => {
         body : JSON.stringify({token : fcmtoken, userId : decoded.userId})
       })
       const result = await response.json();
-      console.log(result);
+      // console.log(result);
     }
     catch(error) {
       console.error("Error in saving the token : ",error);

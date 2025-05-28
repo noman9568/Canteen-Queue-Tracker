@@ -41,7 +41,7 @@ const AdminDashboard = () => {
     setD(updatedQueue);
 
     setTimeout(async ()=>{
-      console.log(currentUser.userId);
+      // console.log(currentUser.userId);
       const response = await fetch(`${API_URL}/api/queue/delete`,{
         method : "POST",
         headers :{
@@ -62,7 +62,7 @@ const AdminDashboard = () => {
     // console.log("Socket connected?", socket.connected);
     socket.on("updatedQueue",(dataR)=>{
       setD(dataR)
-      console.log("Updating the data");
+      // console.log("Updating the data");
       setNone(dataR.length>0);
     })
     return () => {
@@ -80,9 +80,10 @@ const AdminDashboard = () => {
       body : JSON.stringify({
         title : "Order Update",
         body : "Your order is ready!",
-        tokens : token,
+        token : token,
       })
     });
+    // console.log("Notfication check - ",res);
     if(res.ok) {
       console.log("Notification sent.");
     }
