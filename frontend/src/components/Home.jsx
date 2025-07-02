@@ -6,7 +6,7 @@ import third from "../assets/images/3.jpg";
 const API_URL = import.meta.env.VITE_BACKEND_API_URL;
 
 
-const Home = ({username , setCartCount , id}) => {
+const Home = ({ setCartCount , id}) => {
 
   const [dData,setdata] = useState([]);
   const [load,setload] = useState(true);
@@ -55,7 +55,7 @@ const Home = ({username , setCartCount , id}) => {
   return (
     <div className='home-container'>
       <div className="top">
-        Welcome! {username}.
+        Simple Food made for <span> real, actual, everyday life.</span>
       </div>
       {/* <ImageSlider slides={slides} /> */}
       <div className="images-scroller">
@@ -114,7 +114,7 @@ const Home = ({username , setCartCount , id}) => {
       </div>
       
       <div className="trademark">
-        <p>&copy; 2025 YourCompanyName™. All rights reserved.</p>
+        <p>&copy; 2025 CanteenQ™. All rights reserved.</p>
       </div>
     </div>
   )
