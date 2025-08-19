@@ -10,7 +10,7 @@ const AdminDashboard = () => {
   const [notifying,setNotifiying] = useState(false);
   const getQueue = async () =>{
     setLoading(true);
-    const response = await fetch(`${API_URL}/api/queue/getQueue`);
+    const response = await fetch(`{API_URL}/api/queue/getQueue`);
     const data = await response.json();
     setD(data);
     setLoading(false);
@@ -24,7 +24,7 @@ const AdminDashboard = () => {
     }
     setNotifiying(true);
     const currentUser = d[0];
-    const res = await fetch(`${API_URL}/api/user/getToken`,{
+    const res = await fetch(`{API_URL}/api/user/getToken`,{
       method : "POST",
       headers : {
         'content-type' : 'application/json'
@@ -42,7 +42,7 @@ const AdminDashboard = () => {
 
     setTimeout(async ()=>{
       // console.log(currentUser.userId);
-      const response = await fetch(`${API_URL}/api/queue/delete`,{
+      const response = await fetch(`{API_URL}/api/queue/delete`,{
         method : "POST",
         headers :{
           "Content-Type" : "application/json"
@@ -72,7 +72,7 @@ const AdminDashboard = () => {
 
 
   const sendNotification = async (token) =>{
-    const res = await fetch(`${API_URL}/api/queue/notify`,{
+    const res = await fetch(`{API_URL}/api/queue/notify`,{
       method : "POST",
       headers : {
         'content-type' : 'application/json'

@@ -60,6 +60,7 @@ exports.deleteQ = async (req,res) =>{
 
 exports.notify = async (req,res) =>{
   const { title , body , token } = req.body;
+  console.log(req.body);
   const message = {
     notification : {
       title,
@@ -69,6 +70,7 @@ exports.notify = async (req,res) =>{
   };
   try {
     const response = await admin.messaging().send(message);
+    console.log("Response from the notification -  " ,response);
     res.status(200).json({ success: true, response });
   } catch (error) {
     console.error("Notification error:", error);

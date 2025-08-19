@@ -48,7 +48,7 @@ const NotificationSetup = ({ children }) => {
 
   const sendToken = async (fcmtoken) =>{
     try {
-      const response = await fetch(`${API_URL}/api/queue/saveToken`,{
+      const response = await fetch(`{API_URL}/api/queue/saveToken`,{
         method : "POST",
         headers : {
           'content-type' : "application/json"

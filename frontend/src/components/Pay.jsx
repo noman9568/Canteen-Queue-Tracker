@@ -41,7 +41,7 @@ const Pay = ({cartitems,amount , id}) =>{
       return;
     }
     try {
-      const response = await fetch(`${API_URL}/api/order/placeOrder`,{
+      const response = await fetch(`{API_URL}/api/order/placeOrder`,{
         method : "POST",
         headers : {
           "Content-Type" : "application/json"
@@ -59,7 +59,7 @@ const Pay = ({cartitems,amount , id}) =>{
         handler: async (response) => {
           alert("Payment Successful!",response);
           console.log(response);
-          const res = await fetch(`${API_URL}/api/order/saveOrder`, {
+          const res = await fetch(`{API_URL}/api/order/saveOrder`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -74,7 +74,7 @@ const Pay = ({cartitems,amount , id}) =>{
           const fcmtoken = await getFCMToken();
           const userId = id;
 
-          await fetch(`${API_URL}/api/queue/join`,{
+          await fetch(`{API_URL}/api/queue/join`,{
             method: "POST",
             headers : {
               "content-type" : "application/json",

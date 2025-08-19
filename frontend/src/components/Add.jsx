@@ -24,7 +24,7 @@ const Add = () =>{
     formData.append("image",image);
 
     try{
-      const response = await fetch(`${API_URL}/api/add`,{
+      const response = await fetch(`{API_URL}/api/add`,{
         method : "POST",
         body : formData,
       })

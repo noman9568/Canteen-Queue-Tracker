@@ -1,0 +1,26 @@
+.floating-elements {
+  position: fixed;       /* Cover the whole screen */
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;  /* Clicks go through */
+  z-index: -1;           /* Behind everything */
+  overflow: hidden;
+}
+
+.floating-element {
+  position: absolute;
+  font-size: 2rem;
+  opacity: 1;          /* A bit visible */
+  animation: floatAround 20s linear infinite;
+}
+
+@keyframes floatAround {
+  0% {
+    transform: translateY(100vh) rotate(0deg);   /* Start below screen */
+  }
+  100% {
+    transform: translateY(-150px) rotate(360deg); /* Float to top */
+  }
+}

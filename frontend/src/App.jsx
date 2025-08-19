@@ -1,6 +1,7 @@
 import './App.css';
 import "./styles/global.scss";
 import NotificationSetup from "./components/NotificationSetup.jsx";
+import FloatingElements from './components/FloatingElements.jsx';
 
 import { BrowserRouter as Router, Routes, Route, Link, Navigate } from "react-router-dom";
 import { FaShoppingCart } from 'react-icons/fa';
@@ -86,9 +87,10 @@ function App() {
   };
   return (
       <NotificationSetup>
+      <FloatingElements />
       <Router>
         <nav cartcount={cartcount}>
-          <logo><GiKnifeFork className='nav-logo'/>CanteenQ</logo>
+          <logo><GiKnifeFork className='nav-logo'/><span>CanteenQ</span></logo>
             <navbar>
               {!isMobile && (
                 <>
