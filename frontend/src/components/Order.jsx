@@ -6,7 +6,7 @@ const Order = () =>{
   const [orders,setOrders] = useState([]);
   const [loading,setLoading] = useState(true);
   const orderFetch = async (id) =>{
-    const response = await fetch(`{API_URL}/api/user/orderData`,{
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/api/user/orderData`,{
       method : "POST",
       headers :{
         'content-type' : 'application/json'

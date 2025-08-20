@@ -424,6 +424,9 @@ section {
   .stat-label{
     font-size: 1.15rem;
   }
+  .food-container{
+    width: 96%;
+  }
 }
 
 @media (max-width: 768px) {
@@ -498,10 +501,13 @@ section {
     max-width: 90%;
   }
   .stat-number{
-    font-size: 1.5rem;
+    font-size: 1.7rem;
   }
   .stat-label{
-    font-size: 0.8rem;
+    font-size: 0.9rem;
+  }
+  .food-container{
+    width: 95%;
   }
 }
 @media (max-width:480px) {
@@ -517,6 +523,15 @@ section {
   }
   .icon-container{
     height: 200px;
+  }
+  .stat-number{
+    font-size: 1.6rem;
+  }
+  .stat-label{
+    font-size: 0.85rem;
+  }
+  .food-container{
+    width: 94%;
   }
 }
 
@@ -768,12 +783,12 @@ section {
   }
 }
 @media (max-width:450px) {
-  .cart-item{
-    width: 90%;
-  }
-  .bill{
-    width: 90%;
-  }
+  // .cart-item{
+  //   width: 85%;
+  // }
+  // .bill{
+  //   width: 85%;
+  // }
   .add-to-cart{
     padding: 0.22rem 0;
   }
@@ -781,10 +796,11 @@ section {
     padding: 0.2rem 0.8rem;
   }
   .orderDetail{
-    width: 90%;
+    width: 85%;
   }
   .veg{
     margin-top: 2rem;
   }
+  
 }
 

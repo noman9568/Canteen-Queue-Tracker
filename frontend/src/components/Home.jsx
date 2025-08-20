@@ -11,7 +11,7 @@ const Home = ({ setCartCount , id}) => {
     // console.log(id)
     const fetchData = async ()=>{
       try {
-        const response = await fetch(`{API_URL}/api/dishData`);
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/dishData`);
         const result = await response.json();
         const updatedData = result.data.map((item) => {
           const arrayBufferToBase64 = (buffer) => {

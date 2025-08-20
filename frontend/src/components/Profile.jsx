@@ -25,7 +25,7 @@ const Profile = () => {
         const decoded = jwtDecode(token);
         const userId = decoded.userId;
         
-        const response = await fetch(`{API_URL}/api/user/userData`, {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/user/userData`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json"
@@ -91,7 +91,7 @@ const Profile = () => {
   }
 
   const updateDetails = async () =>{
-    const response = await fetch(`{API_URL}/api/user/update`,{
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/api/user/update`,{
       method : "POST",
       headers : {
         "Content-Type" : "application/json"
@@ -199,8 +199,8 @@ const Profile = () => {
               {/* <div className="info-value">{data.email}</div> */}
             </div>
             <div className="buttons">
-              <button onClick={() => {updateDetails(); toggleEdit()}}>Save</button>
               <button onClick={toggleEdit}>Cancel</button>
+              <button onClick={() => {updateDetails(); toggleEdit()}}>Save</button>
             </div>
           </div> ) }
       <div className={`screen-hover ${editBlock ? "active" : ""}`} onClick={toggleEdit}></div>

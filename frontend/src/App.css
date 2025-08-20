@@ -87,7 +87,7 @@ html{
   position: fixed;
   top: 0;
   right: 0;
-  height: 100%;
+  height: 100vh;
   width: 234px;
   padding-top: 1rem;
   padding-left: 1rem;
@@ -111,7 +111,8 @@ html{
 }
 .sidebar-header span{
   display: flex;
-  /* align-items: center; */
+  align-items: center;
+  font-size: 1.3rem;
   gap: 0.5rem;
 }
 .sidebar-header .logo{
@@ -127,6 +128,7 @@ html{
   border-radius: 50px;
   color: rgb(24, 32, 123);
   font-size: 1.5rem;
+  margin-right: 0.5rem;
   background-color: rgb(230, 248, 255);
 }
 
@@ -208,6 +210,9 @@ html{
   }
   nav navbar{
     gap: 1rem;
+  }
+  .sidebar{
+    width: 215px;
   }
 }
 
