@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const orderSchema = mongoose.Schema({
-  userId: { type : mongoose.Schema.Types.ObjectId, ref : "User" , required : true },
+  userId: { type : String, ref : "User" , required : true },
   items : [
     {
       dishId : { type : mongoose.Schema.Types.ObjectId , ref : "Dish", required : true },

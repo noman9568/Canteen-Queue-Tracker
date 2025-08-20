@@ -5,6 +5,8 @@ const API_URL = import.meta.env.VITE_BACKEND_API_URL;
 
 const AdminDashboard = () => {
   const [d,setD] = useState([]);
+  const [numberOrder, setOrder] = useState(0);
+  const [amount, setAmount] = useState(0);
   const [none,setNone] = useState(false);
   const [loading , setLoading] = useState(false);
   const [notifying,setNotifiying] = useState(false);
@@ -12,9 +14,12 @@ const AdminDashboard = () => {
     setLoading(true);
     const response = await fetch(`${import.meta.env.VITE_API_URL}/api/queue/getQueue`);
     const data = await response.json();
-    setD(data);
+    setD(data.data);
+    setAmount(data.todayAmount);
+    setOrder(data.numberOrders);
+    // console.log(data);
     setLoading(false);
-    setNone(data.length>0);
+    setNone(data.data.length>0);
   }
 
 
@@ -23,6 +28,7 @@ const AdminDashboard = () => {
       return;
     }
     setNotifiying(true);
+    // console.log("clicked");
     const currentUser = d[0];
     const res = await fetch(`${import.meta.env.VITE_API_URL}/api/user/getToken`,{
       method : "POST",
@@ -32,13 +38,17 @@ const AdminDashboard = () => {
       body : JSON.stringify({userId : currentUser.userId})
     })
     const tokens = await res.json();
-    console.log(tokens);
+    
+    // console.log(tokens);
+    // console.log("Updated values :", currentUser);
 
     await sendNotification(tokens[0]);
     const updatedQueue = d.map((item,index)=> (
       index===0 ? { ...item , status : "Completed"} : item
     ));
     
+    // setAmount(prev => prev + currentUser.orders.totalAmount); 
+    // setOrder(prev => prev + 1);
     setD(updatedQueue);
 
     setTimeout(async ()=>{
@@ -60,11 +70,10 @@ const AdminDashboard = () => {
   
   useEffect(()=>{
     getQueue();
-    // console.log("Socket connected?", socket.connected);
     socket.on("updatedQueue",(dataR)=>{
       setD(dataR)
-      // console.log("Updating the data");
       setNone(dataR.length>0);
+      // console.log(dataR);
     })
     return () => {
       socket.off("updatedQueue");
@@ -93,7 +102,29 @@ const AdminDashboard = () => {
   
   return (
     <div className='admin'>
-      <h1>User Orders</h1>
+      <div className="section">
+        <h1>Admin Dashboard</h1>
+        <span>Manage orders and notify customers</span>
+      </div>
+      <div className="summary">
+        <div className="s-item">
+          <div className="item-value">{d.length}</div>
+          <div className="label">Pending Orders</div>
+        </div>
+        <div className="s-item">
+          <div className="item-value">{numberOrder}</div>
+          <div className="label">Completed Today</div>
+        </div>
+        <div className="s-item">
+          <div className="item-value">4.2</div>
+          <div className="label">Avg Wait Time (min)</div>
+        </div>
+        <div className="s-item">
+          <div className="item-value">₹ {amount}</div>
+          <div className="label">Today's Revenue</div>
+        </div>
+      </div>
+
       { loading ? (
       <div className='loading-spinner'>Loading orders...</div>
       ) : (

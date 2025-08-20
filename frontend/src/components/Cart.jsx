@@ -11,7 +11,7 @@ const Cart = ({ setCartCount , id }) =>{
     const tempAmount = items.reduce((acc,element) =>  acc += element.quantity * element.price,0);
     setAmount(tempAmount);
     setCartitems(items);
-    console.log(items);
+    // console.log(items);
     setCartCount(items.reduce((acc, item) => acc + item.quantity, 0));
   }
   useEffect(()=>{

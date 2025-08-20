@@ -20,5 +20,5 @@ messaging.onBackgroundMessage(function(payload) {
   const title = payload.notification?.title || "Canteen Queue";
   const body = payload.notification?.body || "You have a new notification.";
 
-  self.registration.showNotification(title, { body, icon: "/icon.png" });
+  self.registration.showNotification(title, { body, icon: "/icon1.png" });
 });

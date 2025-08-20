@@ -58,7 +58,7 @@ const Pay = ({cartitems,amount , id}) =>{
         order_id: orderData.id, // Order ID from Razorpay API
         handler: async (response) => {
           alert("Payment Successful!",response);
-          console.log(response);
+          // console.log(response);
           const res = await fetch(`${import.meta.env.VITE_API_URL}/api/order/saveOrder`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -68,8 +68,8 @@ const Pay = ({cartitems,amount , id}) =>{
               orderAmount: orderData.amount,
             }),
           });
-          const ab = await res.json()
-          console.log(ab);
+          // const ab = await res.json()
+          // console.log(ab);
 
           const fcmtoken = await getFCMToken();
           const userId = id;

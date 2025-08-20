@@ -15,12 +15,13 @@ const Dashboard = () => {
     try {
       setLoading(true);
       const response = await fetch(`${import.meta.env.VITE_API_URL}/api/queue/getQueue`);
-      const data = await response.json()
+      const temp = await response.json();
+      const data = temp.data;
       const prevId = prevQueueRef.current.map(item => item._id).sort();
       const newId = data.map(item => item._id).sort();
       
       if(!_.isEqual(prevId,newId)){
-        console.log("Updating the data.");
+        // console.log("Updating the data.");
         setD(data);
         prevQueueRef.current = data;
       }

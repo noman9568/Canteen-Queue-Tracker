@@ -4,16 +4,35 @@ const Order = require('../models/order');
 const admin = require("firebase-admin");
 const mongoose = require("mongoose");
 
+const startOfDay = new Date();
+startOfDay.setHours(0, 0, 0, 0);
+
+const endOfDay = new Date();
+endOfDay.setHours(23, 59, 59, 999);
 
 exports.joinQueue = async (req,res) =>{
   const { userId , fcmtoken } = req.body;
-  const user = await User.findOne({ _id : userId });
-  const name = user.name;
-  const newUser = await Queue.create({userId , name , fcmtoken});
+
+  const user = await User.findById(userId);
+
+  const totalOrders = await Order.countDocuments();
+  const orderNo = totalOrders + 1;
+  const completedOrdersToday = await Order.find({
+    status: "Completed",
+    createdAt: { $gte: startOfDay, $lte: endOfDay }
+  });
+  const numberOrders = completedOrdersToday.length;
+  const todayAmount = completedOrdersToday.reduce((sum, order) => {
+    return sum + order.totalAmount;
+  }, 0);
+
+
+  const newUser = await Queue.create({orderNo , userId , name : user.name , fcmtoken });
+  const newUserWithOrders = await Queue.findById(newUser._id).populate('orders');
 
   const io = req.app.get("io");
-  io.emit('updatedQueue',await Queue.find());
-  res.status(200).json(newUser)
+  io.emit('updatedQueue',await Queue.find().populate('orders'));
+  res.status(200).json(newUserWithOrders);
 };
 
 exports.saveToken = async (req,res) =>{
@@ -34,9 +53,17 @@ exports.saveToken = async (req,res) =>{
 };
 
 exports.getQueue = async (req,res) =>{
+  const completedOrdersToday = await Order.find({
+    status: "Completed",
+    createdAt: { $gte: startOfDay, $lte: endOfDay }
+  });
+  const numberOrders = completedOrdersToday.length;
+  const todayAmount = completedOrdersToday.reduce((sum, order) => {
+    return sum + order.totalAmount;
+  }, 0);
   try {
-    const data = await Queue.find();
-    return res.status(200).json(data);
+    const data = await Queue.find().populate('orders');
+    return res.status(200).json({ data,numberOrders,todayAmount });
   }
   catch (err) {
     console.log("Error in fetching the queue data - ",err);
