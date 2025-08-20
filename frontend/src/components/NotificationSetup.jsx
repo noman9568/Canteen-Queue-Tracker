@@ -4,70 +4,75 @@ import { jwtDecode } from "jwt-decode";
 
 const NotificationSetup = ({ children }) => {
   const [isTokenFound, setTokenFound] = useState(false);
-  const [fcmtoken,setfcmToken] = useState('');
-  const [decoded,setDecoded] = useState(null);
-  // console.log(decoded);
-  const API_URL = import.meta.env.VITE_BACKEND_API_URL;
+  const [fcmtoken, setFcmToken] = useState("");
+  const [decoded, setDecoded] = useState(null);
 
-  useEffect(()=>{
-    const token = localStorage.getItem("token");
-    if(token) {
-      const decoded = jwtDecode(token);
-      setDecoded(decoded);
-    }
-  },[]);
-  useEffect(()=>{
+  const API_URL = import.meta.env.VITE_API_URL; // ✅ use only one consistent env var
 
-  },[decoded]);
-
+  // Decode JWT token from localStorage
   useEffect(() => {
-    requestForToken(setTokenFound , setfcmToken);
-    const setupListener = async () => {
-      try {
-        const payloadHandler = await onMessageListener();
-        const { title, body } = payloadHandler.notification;
-        if (Notification.permission === "granted" && isTokenFound) {
-          new Notification(title, {body});
-        }
-        alert(`${title}\n${body}`);
-      }
-      catch (err) {
-        console.log("Failed to receive notification - ",err);
-      }
-    };
-    setupListener();
-
+    const token = localStorage.getItem("token");
+    if (token) {
+      const decodedToken = jwtDecode(token);
+      setDecoded(decodedToken);
+    }
   }, []);
 
-  useEffect(()=>{
-    console.log("Token send")
-    if(fcmtoken && decoded?.userId) {
+  // Ask for notification permission once on mount
+  useEffect(() => {
+    if ("Notification" in window && Notification.permission !== "granted") {
+      Notification.requestPermission().then((permission) => {
+        if (permission === "granted") {
+          console.log("Notification permission granted.");
+        } else {
+          console.warn("Notification permission denied.");
+        }
+      });
+    }
+  }, []);
+
+  // Request FCM token + setup foreground listener
+  useEffect(() => {
+    requestForToken(setTokenFound, setFcmToken);
+
+    onMessageListener()
+      .then((payload) => {
+        console.log("Foreground notification received:", payload);
+        const { title, body } = payload.notification;
+        if (Notification.permission === "granted" && isTokenFound) {
+          new Notification(title, { body });
+        }
+        // Optional alert fallback
+        alert(`${title}\n${body}`);
+      })
+      .catch((err) => console.log("Failed to receive notification - ", err));
+  }, [isTokenFound]);
+
+  // Send FCM token to backend when both token + userId available
+  useEffect(() => {
+    if (fcmtoken && decoded?.userId) {
+      console.log("Sending token to backend...");
       sendToken(fcmtoken);
     }
-  },[fcmtoken,decoded]);
+  }, [fcmtoken, decoded]);
 
-  const sendToken = async (fcmtoken) =>{
+  const sendToken = async (fcmtoken) => {
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/queue/saveToken`,{
-        method : "POST",
-        headers : {
-          'content-type' : "application/json"
+      const response = await fetch(`${API_URL}/api/queue/saveToken`, {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
         },
-        body : JSON.stringify({token : fcmtoken, userId : decoded.userId})
-      })
+        body: JSON.stringify({ token: fcmtoken, userId: decoded.userId }),
+      });
       const result = await response.json();
-      // console.log(result);
+      console.log("Token saved:", result);
+    } catch (error) {
+      console.error("Error in saving the token: ", error);
     }
-    catch(error) {
-      console.error("Error in saving the token : ",error);
-    }
-  }
+  };
 
-  return (
-    <>
-      {children}
-    </>
-  );
+  return <>{children}</>;
 };
 
 export default NotificationSetup;
