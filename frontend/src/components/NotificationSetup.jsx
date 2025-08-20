@@ -42,16 +42,15 @@ const NotificationSetup = ({ children }) => {
         if (Notification.permission === "granted" && isTokenFound) {
           new Notification(title, { body });
         }
-        // Optional alert fallback
+        
         alert(`${title}\n${body}`);
       })
       .catch((err) => console.log("Failed to receive notification - ", err));
   }, [isTokenFound]);
 
-  // Send FCM token to backend when both token + userId available
+
   useEffect(() => {
     if (fcmtoken && decoded?.userId) {
-      console.log("Sending token to backend...");
       sendToken(fcmtoken);
     }
   }, [fcmtoken, decoded]);

@@ -32,6 +32,7 @@ const AdminDashboard = () => {
       body : JSON.stringify({userId : currentUser.userId})
     })
     const tokens = await res.json();
+    console.log(tokens);
 
     await sendNotification(tokens[0]);
     const updatedQueue = d.map((item,index)=> (

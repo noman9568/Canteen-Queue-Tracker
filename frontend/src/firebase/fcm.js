@@ -17,9 +17,9 @@ export const messaging = getMessaging(app);
 
 export const requestForToken = async (setTokenFound , setfcmToken) => {
   try {
-    // ✅ Register Service Worker FIRST and wait until it's ready
-    const registration = await navigator.serviceWorker.register("/firebase-messaging-sw.js");
-    await navigator.serviceWorker.ready; // Wait for it to become active
+    // Register SW only if not already active
+    const registration = await navigator.serviceWorker.register("/firebase-messaging-sw.js",{ scope : "/" });
+    await navigator.serviceWorker.ready; 
 
     const token = await getToken(messaging, {
       vapidKey: "BIDzAC3SNgIBHRzv22OX7JGr3BTfQHupYMq-kFJmHv9MWEzwgWxS-ex3DMBelQ1QlYcFKod14iVUuemerj_rcBE", // Replace this
@@ -27,7 +27,7 @@ export const requestForToken = async (setTokenFound , setfcmToken) => {
     });
 
     if (token) {
-      // console.log("FCM Token:", token);
+      // console.log("FCM Token generated :", token);
       // alert(token);,
       setfcmToken(token);
       setTokenFound(true);

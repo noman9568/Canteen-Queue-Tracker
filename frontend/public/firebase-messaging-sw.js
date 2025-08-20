@@ -16,11 +16,9 @@ firebase.initializeApp({
 const messaging = firebase.messaging();
 
 messaging.onBackgroundMessage(function(payload) {
-  // console.log("Received background message: ", payload);
-  const notificationTitle = payload.notification.title;
-  const notificationOptions = {
-    body: payload.notification.body,
-  };
 
-  self.registration.showNotification(notificationTitle, notificationOptions);
+  const title = payload.notification?.title || "Canteen Queue";
+  const body = payload.notification?.body || "You have a new notification.";
+
+  self.registration.showNotification(title, { body, icon: "/icon.png" });
 });
