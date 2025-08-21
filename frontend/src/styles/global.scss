@@ -57,10 +57,69 @@
   font-size: 1.25rem;
   color: white;
   border-radius: 20px;
-  padding: 0.4rem 0.7rem;
+  padding: 0.4rem 0.9rem;
   margin-left: auto;
+  span{
+    display: inline-block;
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+    margin-right: 0.3rem;
+    background-color: rgb(180, 255, 180);
+    animation: beat 2s infinite ease-in-out;
+  }
+}
+@keyframes beat {
+  0%,100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
 }
 
+.circle1{
+  position: absolute;
+  height: 75px;
+  width: 75px;
+  border-radius: 50%;
+  background-color: rgba(77, 190, 255, 0.219);
+  animation: float 1s ease-in infinite;
+}
+.circle2{
+  position: absolute;
+  height: 50px;
+  width: 50px;
+  bottom: 20%;
+  border-radius: 50%;
+  background-color: rgba(222, 255, 77, 0.219);
+  // animation: float 3s ease-in infinite;
+}
+.circle2:nth-child(2){
+  height: 20px;
+  width: 20px;
+  bottom: 10%;
+  left: 20%;
+  background-color: rgba(255, 101, 77, 0.219);
+}
+.circle3{
+  position: absolute;
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  right: 2%;
+  bottom: 5%;
+  background-color: rgba(255, 90, 228, 0.148);
+}
+.circle4{
+  position: absolute;
+  height: 20px;
+  width: 20px;
+  top: 20%;
+  left: 60%;
+  border-radius: 50%;
+  background-color: rgba(89, 201, 79, 0.219);
+}
 .food-items{
   display: flex;
   justify-content: space-around;
@@ -70,13 +129,13 @@
   // padding: 2rem;
 }
 .food-item{
-  width: 120px;
-  height: 120px;
+  width: 115px;
+  height: 115px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 4rem;
+  font-size: 3.5rem;
   animation: float 3s ease-in-out infinite;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
   position: relative;
@@ -149,6 +208,55 @@
   font-weight: 500;
   font-size: 1.2rem;
   color: #64748B;
+}
+
+.highlight{
+  width: 90%;
+  margin: 5rem auto;
+  display: flex;
+  gap: 2rem;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+.h1, .h2, .h3{
+  border-radius: 20px;
+  padding: 2.2rem 1rem;
+  background-color: white;
+  color: rgb(44, 44, 44);
+
+  min-width: 280px;
+  flex: 1 1 290px;
+  max-width: 350px;
+
+  box-shadow: 0 0 10px rgba(52, 52, 52, 0.071);
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  .h-p{
+    margin-top: 1.5rem;
+  }
+  span{
+    font-size: 1.4rem;
+    font-weight: 700;
+  }
+  p{
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 500;
+  }
+}
+.h1:hover, .h2:hover, .h3:hover {
+  transform: scale(1.03);
+}
+.h-icon{
+  // border: 1px solid;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.127);
+  border-radius: 50%;
+  padding: 0.5rem 0.6rem;
+  font-size: 2rem;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(54, 96, 222);
 }
 
 
@@ -387,7 +495,8 @@ section {
 }
 .food-container{
   width: 98%;
-  margin: 0 auto;
+  margin: 2rem auto;
+  margin-bottom: 3rem;
 }
 .chinese , .veg {
   font-size: 2.2rem;
@@ -426,6 +535,18 @@ section {
   }
   .food-container{
     width: 96%;
+  }
+  .circle1{
+    height: 70px;
+    width: 70px;
+  }
+  .circle2{
+    bottom: 10%;
+  }
+  .h1, .h2, .h3{
+    span{
+      font-size: 1.3rem;
+    }
   }
 }
 
@@ -479,9 +600,54 @@ section {
   }
   .queue-indicator{
     font-size: 1.15rem;
+    span{
+      height: 8px;
+      width: 8px;
+    }
+  }
+  .circle1{
+    height: 60px;
+    width: 60px;
+    background-color: rgba(77, 190, 255, 0.2);
+  }
+  .circle2{
+    height: 40px;
+    width: 40px;
+  }
+  .circle3{
+    height: 50px;
+    width: 50px;
+  }
+  .circle2:nth-child(2) , .circle4{
+    height: 17px;
+    width: 17px;
+  }
+  .highlight{
+    width: 94%;
+    gap: 1.4rem;
+  }
+  .h1, .h2, .h3{
+    padding: 1.8rem 0.8rem;
+    min-width: 250px;
+    flex: 1 1 250px;
+    span{
+      font-size: 1.3rem;
+    }
+    p{
+      font-size: 1.1rem;
+    }
+    .h-p{
+      margin-top: 1.2rem;
+    }
+  }
+  .h-icon{
+    font-size: 1.5rem;
+    padding: 0.4rem 0.5rem;
   }
 }
-@media (max-width:625px) {
+
+
+@media (max-width:630px) {
   .top{
     // margin-top: 3.5rem;
     .heading{
@@ -509,6 +675,42 @@ section {
   .food-container{
     width: 95%;
   }
+  .circle1{
+    height: 50px;
+    width: 50px;
+    background-color: rgba(77, 190, 255, 0.2);
+  }
+  .circle2{
+    height: 35px;
+    width: 35px;
+  }
+  .circle3{
+    height: 40px;
+    width: 40px;
+  }
+  .circle2:nth-child(2) , .circle4{
+    height: 13px;
+    width: 13px;
+  }
+  .highlight{
+    gap: 1rem;
+    width: 96%;
+  }
+  .h1, .h2, .h3{
+    min-width: 210px;
+    max-width: 300px;
+    flex: 1 1 230px;
+    // span{
+    //   font-size: 1.2rem;
+    // }
+    p{
+      font-size: 1rem;
+    }
+  }
+  .h-icon{
+    font-size: 1.3rem;
+    padding: 0.35rem 0.45rem;
+  }
 }
 @media (max-width:480px) {
   .top{
@@ -523,6 +725,7 @@ section {
   }
   .icon-container{
     height: 200px;
+    margin-bottom: 5.5rem;
   }
   .stat-number{
     font-size: 1.6rem;
@@ -532,6 +735,19 @@ section {
   }
   .food-container{
     width: 94%;
+  }
+  .circle1{
+    top: 10%;
+    height: 45px;
+    width: 45px;
+  }
+  .queue-indicator{
+    span{
+      margin-right: 0.3rem;
+    }
+  }
+  .highlight{
+    gap: 1.5rem;
   }
 }
 
@@ -718,21 +934,25 @@ section {
 
 .trademark{
   margin-top: 1rem;
-  background-color: rgb(217, 217, 217);
+  background-color: rgba(4, 9, 151, 0.1);
 }
 .trademark p{
-  font-size: 1.25rem;
+  font-size: 1.4rem;
   color: rgb(58, 58, 58);
   font-weight: 500;
   margin: 0;
-  padding: 0.3rem 0;
+  padding: 0.7rem 0;
 }
 
 
 
-@media (max-width:825px) {
+@media (max-width:830px) {
   .orderDetail{
     width: 60%;
+  }
+  .trademark p{
+    font-size: 1.3rem;
+    padding: 0.6rem 0;
   }
 }
 @media (max-width:725px) {
@@ -757,6 +977,10 @@ section {
   }
   .plus , .minus{
     padding: 0.25rem 0.8rem;
+  }
+  .trademark p{
+    font-size: 1.25rem;
+    padding: 0.55rem 0;
   }
 }
 @media (max-width:525px) {

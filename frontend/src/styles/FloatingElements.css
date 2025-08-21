@@ -1,26 +1,40 @@
 .floating-elements {
-  position: fixed;       /* Cover the whole screen */
+  position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  pointer-events: none;  /* Clicks go through */
-  z-index: -1;           /* Behind everything */
+  pointer-events: none;
   overflow: hidden;
 }
 
 .floating-element {
   position: absolute;
-  font-size: 2rem;
-  opacity: 1;          /* A bit visible */
-  animation: floatAround 20s linear infinite;
+  font-size: 2.5rem;
+  opacity: 0.6; /* a little more visible */
+  animation: floatAround var(--duration, 18s) ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
 }
 
 @keyframes floatAround {
   0% {
-    transform: translateY(100vh) rotate(0deg);   /* Start below screen */
+    transform: translateY(100vh) translateX(0) scale(1) rotate(0deg);
+    opacity: 0;
+  }
+  25% {
+    transform: translateY(75vh) translateX(-20px) scale(1.1) rotate(90deg);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translateY(50vh) translateX(20px) scale(0.9) rotate(180deg);
+    opacity: 0.5;
+  }
+  75% {
+    transform: translateY(25vh) translateX(-15px) scale(1.05) rotate(270deg);
+    opacity: 0.3;
   }
   100% {
-    transform: translateY(-150px) rotate(360deg); /* Float to top */
+    transform: translateY(-150px) translateX(0) scale(1) rotate(360deg);
+    opacity: 0;
   }
 }

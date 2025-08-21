@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Card from "./Card";
-const API_URL = import.meta.env.VITE_BACKEND_API_URL;
+const API_URL = import.meta.env.VITE_API_URL;
+import { Smartphone, Bell, CreditCard } from "lucide-react";
 
 
 const Home = ({ setCartCount , id}) => {
@@ -57,8 +58,13 @@ const Home = ({ setCartCount , id}) => {
       </div>
 
       <div className="icon-container">
+        <div className="circle1"></div>
+        <div className="circle2"></div>
+        <div className="circle2"></div>
+        <div className="circle3"></div>
+        <div className="circle4"></div>
         <div className="queue-indicator">
-          🕐 Queue: 3 min
+          <span></span> Queue: 3 min
         </div>
         <div class="food-items">
           <div class="food-item">🍜</div>
@@ -86,6 +92,31 @@ const Home = ({ setCartCount , id}) => {
         <div class="stat-item">
           <div class="stat-number">99%</div>
           <div class="stat-label">Accuracy Rate</div>
+        </div>
+      </div>
+    </section>
+
+    {/* Highlight section */}
+    <section className="highlight">
+      <div className="h1">
+        <div className="h-icon">📱</div>
+        <div className="h-p">
+          <span>Real-time Updates</span>
+          <p>Get live updates on queue length and estimated wait times for all counters.</p>
+        </div>
+      </div>
+      <div className="h2">
+        <div className="h-icon">🔔</div>
+        <div className="h-p">
+          <span>Instant Notifications</span>
+          <p>Stay informed with real-time alerts about your order and queue status.</p>
+        </div>
+      </div>
+      <div className="h3">
+        <div className="h-icon">💳</div>
+        <div className="h-p">
+          <span>Secure Payments</span>
+          <p>Enjoy fast, reliable, and secure payment options for every order.</p>
         </div>
       </div>
     </section>
