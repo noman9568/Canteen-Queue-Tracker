@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import '../add.css';
-const API_URL = import.meta.env.VITE_BACKEND_API_URL;
+const API_URL = import.meta.env.VITE_API_URL;
 
 const Add = () =>{
   const [image,setImage] = useState(null);
@@ -40,10 +40,12 @@ const Add = () =>{
   return (
     <div className='add-container'>
       <form onSubmit={handleSubmit} className='addForm' >
-        <h1>Add Dish</h1>
-        <input type='text' className='input' name='name' placeholder='Enter the name...' required/>
-        <input type="text" className='input' name='quantity' placeholder='Enter the quantity available...' required/>
-        <input type="text" className='input' name='price' placeholder='Enter the price...' required/>
+        <h1><span></span>Add New Dish</h1>
+        <div className="inputData">
+          <input type='text' className='input' name='name' placeholder='Enter the name...' required/>
+          <input type="text" className='input' name='quantity' placeholder='Enter the quantity available...' required/>
+          <input type="text" className='input' name='price' placeholder='Enter the price...' required/>
+        </div>
         <div>
           <label htmlFor="category">Select the category</label>
           <select id='category' name='category' required>
@@ -53,7 +55,7 @@ const Add = () =>{
           </select>
         </div>
         <input type="file" className='file' onChange={handleChange}/>
-        <button type='submit'>Submit</button>
+        <button type='submit' className='submit-btn'>Submit</button>
       </form>
     </div>
   )

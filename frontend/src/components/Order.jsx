@@ -34,7 +34,10 @@ const Order = () =>{
 
   return (
     <div className="order-container">
-      <h1 className="order">Orders</h1>
+      <div className="order">
+        <h1>My Orders</h1>
+        <span>Track and manage all your food orders</span>
+      </div>
       <div className="orders">
         { loading ? <p>Loading...</p> : orders.map((element) => (
           <div key={element._id} className="orderDetail"><div className="order-status" ><span className="status">{element.status==="Completed" ? "✅" : "🔄"}</span><span>{dateExtract(element.createdAt)}</span></div>{ element.items.map(item =>(

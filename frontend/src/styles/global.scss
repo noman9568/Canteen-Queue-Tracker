@@ -857,9 +857,22 @@ section {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
 
-.order{
-  padding: 2rem 0;
+.order {
+  margin-bottom: 2.5rem;
+  h1{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 0.5rem;
+    margin-top: 2.5rem;
+    font-size: 3rem;
+    color: black;
+  }
+  span{
+    color: grey;
+    font-size: 1.4rem;
+  }
 }
+
 .orders{
   display: flex;
   flex-direction: column;
@@ -937,11 +950,11 @@ section {
   background-color: rgba(4, 9, 151, 0.1);
 }
 .trademark p{
-  font-size: 1.4rem;
+  font-size: 1.25rem;
   color: rgb(58, 58, 58);
   font-weight: 500;
   margin: 0;
-  padding: 0.7rem 0;
+  padding: 0.6rem 0;
 }
 
 
@@ -950,10 +963,10 @@ section {
   .orderDetail{
     width: 60%;
   }
-  .trademark p{
-    font-size: 1.3rem;
-    padding: 0.6rem 0;
-  }
+  // .trademark p{
+  //   font-size: 1.28rem;
+  //   padding: 0.55rem 0;
+  // }
 }
 @media (max-width:725px) {
   .cart-item{
@@ -979,8 +992,11 @@ section {
     padding: 0.25rem 0.8rem;
   }
   .trademark p{
-    font-size: 1.25rem;
-    padding: 0.55rem 0;
+    font-size: 1.2rem;
+    padding: 0.5rem 0;
+  }
+  .order h1{
+    font-size: 2.7rem;
   }
 }
 @media (max-width:525px) {
@@ -1004,6 +1020,9 @@ section {
   }
   .content-container{
     margin-top: 0.2rem;
+  }
+  .order span{
+    font-size: 1.3rem;
   }
 }
 @media (max-width:450px) {

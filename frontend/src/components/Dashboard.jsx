@@ -55,7 +55,10 @@ const Dashboard = () => {
   },[])
   return (
     <div className='user'>
-      <div className="dashboard-header">Queue Dashboard</div>
+      <div className="dashboard-header">
+        <div className='heading1'>Queue Dashboard</div>
+        <span>Real-time queue status and order tracking</span>
+      </div>
       { loading ? (
       <div className='loading-spinner'>Loading orders...</div>
       ) : (

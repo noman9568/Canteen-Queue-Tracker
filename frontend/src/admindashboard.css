@@ -97,15 +97,27 @@
 .no-order{
   margin-top: 2.5rem;
   font-size: 1.5rem;
+  color: rgb(0, 0, 0);
 }
 .dashboard-header{
-  font-size: 2.5rem;
-  font-weight: 600;
-  color: rgb(153, 0, 0);
-  margin: 2rem 0;
+  div{
+    margin-bottom: 0;
+  }
+  span{
+    font-size: 1.4rem;
+    color: gray;
+  }
 }
+.heading1{
+    font-size: 3rem;
+    font-weight: 700;
+    color: rgb(0, 0, 0);
+    margin: 2rem 0;
+  }
 .notify-btn button{
   margin-top: 3rem;
+  color: black;
+  font-size: 1.15rem;
   border: 1px solid rgb(104, 104, 104);
   background-color: white;
   box-shadow: 0 2px 4px rgb(101, 101, 101,0.5);
@@ -120,7 +132,7 @@
   .summary{
     width: 85%;
   }
-  .admin h1{
+  .admin h1, .heading1{
     font-size: 2.9rem;
   }
 }
@@ -138,10 +150,20 @@
       font-size: 1.1rem;
     }
   }
+  .heading1, .admin h1{
+    font-size: 2.8rem;
+  }
+
 }
 @media (max-width:625px) {
   .item{
     width: 90%;
+  }
+  .heading1, .admin h1{
+    font-size: 2.7rem;
+  }
+  .dashboard-header span, .admin span{
+    font-size: 1.3rem;
   }
 }
 @media (max-width:480px) {
