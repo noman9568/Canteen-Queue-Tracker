@@ -4,24 +4,25 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 80vh;
+  min-height: 85vh;
   background-color: #eff4ff;
   padding: 1rem;
   flex-direction: column;
 }
 
 .Form {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
-  background-color: rgb(240, 240, 240);
-  border: 2px solid rgb(208, 208, 208);
-  padding: 2.3rem;
+  background-color: rgb(248, 248, 248);
+  border: 2px solid rgb(223, 223, 223);
+  padding: 2.1rem;
   width: 100%;
   max-width: 420px;
-  border-radius: 12px;
+  border-radius: 1.2rem;
   font-family: "Raleway", sans-serif;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.147);
   transition: transform 0.3s ease;
 }
 
@@ -60,14 +61,13 @@
 }
 
 .Form input {
-  /* width: 100%; */
-  padding: 0.7rem 1rem;
-  font-size: 1.1rem;
+  padding: 0.7rem 0.9rem;
+  font-size: 1.05rem;
   font-family: "Quicksand", sans-serif;
-  border: 2px solid #c5d1ff;
+  border: 2px solid #d6deff;
   background-color: #fbfdff;
   color: #333;
-  border-radius: 0.6rem;
+  border-radius: 0.7rem;
   transition: all 0.3s ease;
 }
 
@@ -111,12 +111,12 @@ input:-webkit-autofill {
 
 .loginButton, .registerButton {
   font-family: "Quicksand", sans-serif;
-  background-color: #4f46e5;
+  background-color: #3d33fa;
   color: white;
   font-weight: 600;
   border: none;
-  padding: 0.75rem 1.5rem;
-  border-radius: 8px;
+  padding: 0.65rem 0.5rem;
+  border-radius: 0.7rem;
   cursor: pointer;
   transition: all 0.3s ease;
   min-width: 120px;
@@ -124,16 +124,16 @@ input:-webkit-autofill {
 
 .registerButton {
   width: 100%;
-  background-color: #4f46e5;
+  /* background-color: #4f46e5; */
 }
 
 .loginButton:hover:not(:disabled), .registerButton:hover:not(:disabled) {
-  background-color: #2563eb;
+  background-color: #4d45e0;
   transform: scale(1.03);
 }
 
 .registerButton:hover:not(:disabled) {
-  background-color: #4338ca;
+  background-color: #4f45e0;
 }
 
 .loginButton:disabled, .registerButton:disabled {
@@ -146,7 +146,7 @@ input:-webkit-autofill {
 }
 
 .forgotpwd {
-  color: #3b82f6;
+  color: #3b6af6;
   font-size: 0.95rem;
   cursor: pointer;
   font-weight: 600;
@@ -194,8 +194,8 @@ formContainer > h2 {
 }
 @media (max-width: 500px) {
   .Form {
-    padding: 2.1rem 1rem;
-    max-width: 350px;
+    padding: 2.1rem 1.8rem;
+    max-width: 330px;
   }
   
   .form-actions {

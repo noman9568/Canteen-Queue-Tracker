@@ -1,9 +1,9 @@
 .profile-page {
-  min-height: 85vh;
+  min-height: 89vh;
   background-color: #f7f9fc;
   display: flex;
   justify-content: center;
-  padding: 1.5rem 1rem;
+  padding: 1.5rem 2rem;
   font-family: "Montserrat",sans-serif;
   box-sizing: border-box;
   
@@ -84,9 +84,10 @@
       
       .info-card {
         background-color: white;
-        border-radius: 12px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        border-radius: 1.3rem;
+        box-shadow: 0 0 25px rgba(43, 40, 255, 0.09);
         padding: 1.25rem;
+        border: 1px solid rgba(232, 103, 33, 0.468);
         margin-bottom: 1.5rem;
         width: 100%;
         overflow: hidden;
@@ -133,7 +134,7 @@
             }
             
             .count-circle {
-              background-color: #4f46e5;
+              background-color: #3d33fa;
               color: white;
               min-width: 40px;
               height: 40px;
@@ -200,8 +201,8 @@
         
         button {
           flex: 1;
-          padding: 0.75rem;
-          border-radius: 8px;
+          padding: 0.65rem;
+          border-radius: 0.7rem;
           font-weight: 500;
           font-size: 0.875rem;
           cursor: pointer;
@@ -461,11 +462,11 @@
 
 
 .edit-profile{
-  background-color: #4f46e5;
+  background-color: #3d33fa;
   color: white;
   padding: 0.8rem;
   &:hover{
-    background-color: #6358da;
+    background-color: #3f5fff;
   }
 }
 .buttons{
