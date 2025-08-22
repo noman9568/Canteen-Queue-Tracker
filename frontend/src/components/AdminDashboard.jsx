@@ -132,8 +132,12 @@ const AdminDashboard = () => {
           <div className='no-order'>No orders in the queue</div>
         ) : (
           d.map((item, index) => (
-            <div className='item' key={item._id}>
-              <div key={index} className='item-name'>{item.name}<span>ID:{item._id}</span></div>
+            <div className='item'>
+              <div className="orderNo-id">
+                <div className="orderNo"># {item.orderNo}</div>
+                <span>ID:{item._id}</span>
+              </div>
+              <div key={index} className='item-name'>{item.name}</div>
               <div className="item-status" style={{ color : item.status==='waiting' ? "red" : "green" }}>{item.status}</div>
             </div>
           ))

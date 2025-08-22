@@ -63,7 +63,7 @@ const Cart = ({ setCartCount , id }) =>{
       <h2>Your Cart</h2>
       <div className="cart-item-container">
         {cartitems.length === 0 ? (
-          <p style={{ color : "#ff3a3a" , fontSize : '1.4rem' , fontWeight : "500"}}>Cart is Empty!</p>
+          <p style={{ color : "#ff2d2dff" , fontSize : '1.5rem' , fontWeight : "500"}}>Cart is Empty!</p>
         ) : (
           cartitems.map((element) =>(
             <div className="cart-item" key={element.dishId}>

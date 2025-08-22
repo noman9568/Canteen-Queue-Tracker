@@ -16,6 +16,7 @@ const Dashboard = () => {
       setLoading(true);
       const response = await fetch(`${import.meta.env.VITE_API_URL}/api/queue/getQueue`);
       const temp = await response.json();
+      console.log(temp);
       const data = temp.data;
       const prevId = prevQueueRef.current.map(item => item._id).sort();
       const newId = data.map(item => item._id).sort();
@@ -67,7 +68,11 @@ const Dashboard = () => {
         ) : (
           d.map((item, index) => (
             <div className='item'>
-              <div key={index} className='item-name'>{item.name}<span>ID:{item._id}</span></div>
+              <div className="orderNo-id">
+                <div className="orderNo"># {item.orderNo}</div>
+                <span>ID:{item._id}</span>
+              </div>
+              <div key={index} className='item-name'>{item.name}</div>
               <div className="item-status" style={{ color : item.status==='waiting' ? "red" : "green" }}>{item.status}</div>
             </div>
           ))

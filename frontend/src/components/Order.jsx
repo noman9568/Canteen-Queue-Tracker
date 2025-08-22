@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { jwtDecode } from "jwt-decode";
 
-const API_URL = import.meta.env.VITE_BACKEND_API_URL;
+const API_URL = import.meta.env.VITE_API_URL;
 const Order = () =>{
   const [orders,setOrders] = useState([]);
   const [loading,setLoading] = useState(true);
@@ -40,9 +40,26 @@ const Order = () =>{
       </div>
       <div className="orders">
         { loading ? <p>Loading...</p> : orders.map((element) => (
-          <div key={element._id} className="orderDetail"><div className="order-status" ><span className="status">{element.status==="Completed" ? "✅" : "🔄"}</span><span>{dateExtract(element.createdAt)}</span></div>{ element.items.map(item =>(
-            <div key={item._id} className="itemDetail"><span className="itemName">{item.name}</span><span className="priceQ">{item.quantity} x {item.price}</span></div>
-          )) }<div className="total-amount"><span>Total :</span><span>₹ {element.totalAmount}</span></div></div>
+          <div key={element._id} className="orderDetail">
+            <div className="order-status">
+              {element.status === "Completed" ? (
+                <span className="delivered">
+                  <span className="icon">✓</span>
+                  <span className="text">Delivered</span>
+                </span>
+              ) : (
+                <span className="processing">
+                  <span className="icon">⏳</span>
+                  <span className="text">Processing</span>
+                </span>
+              )}
+              <span className="date">{dateExtract(element.createdAt)}</span>
+            </div>
+            <div className="order-items">{ element.items.map(item =>(
+              <div key={item._id} className="itemDetail"><span className="itemName">{item.name}</span><span className="priceQ">{item.quantity} x {item.price}</span></div>
+            )) }</div>
+            <div className="total-amount"><span>Total :</span><span>₹ {element.totalAmount}</span></div>
+          </div>
         )) }
       </div>
     </div>

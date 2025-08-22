@@ -1,7 +1,7 @@
 .admin,.user{
   border-radius: 4px;
   background-color: rgb(244, 252, 255);
-  min-height: 80vh;
+  min-height: 85vh;
   padding: 1rem;
   display: flex;
   border-radius: 3px;
@@ -22,7 +22,7 @@
 }
 .summary{
   display: flex;
-  padding: 2rem 1.5rem;
+  padding: 1.1rem 1.5rem;
   justify-content: space-between;
   width: 80%;
   background-color: white;
@@ -59,27 +59,41 @@
 }
 
 .item{
-  border-left: 7px solid rgb(102, 172, 102);
+  /* border-left: 7px solid rgb(102, 172, 102); */
   background-color: #f8fff8;
-  padding: 1.2rem;
+  padding: 0.9rem 1.1rem;
   margin-bottom: 1rem;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
   width: 650px;
+  border-radius: 0.8rem;
 }
-.item-name{
+.orderNo-id{
   display: flex;
   justify-content: space-between;
-  font-size: 1.4rem;
-  font-weight: 500;
-  color: black;
+  .orderNo{
+    color: blue;
+    font-size: 1.5rem;
+    font-weight: 500;
+  }
   span{
     font-size: 1rem;
     font-weight: 400;
-    background-color: rgb(240, 240, 240);
-    border-radius: 3px;
-    padding: 0.15rem 0.5rem;
+    background-color: rgb(228, 228, 228);
+    border-radius: 0.35rem;
+    padding: 0.1rem 0.5rem;
     width: max-content;
+    color: black;
+    display: flex;
+    align-items: center;
   }
+}
+.item-name{
+  /* display: flex;
+  justify-content: space-between; */
+  text-align: left;
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: black;
 }
 .item-status{
   font-size: 1.2rem;
@@ -88,11 +102,11 @@
 .noQueue-message{
   margin-top: 3rem;
   font-size: 1.4rem;
-  color: rgb(76, 15, 15);
+  color: rgb(54, 13, 13);
 }
 .loading-spinner{
   font-size: 1.5rem;
-  margin-top: 2.5rem;
+  margin-top: 3rem;
 }
 .no-order{
   margin-top: 2.5rem;
@@ -100,6 +114,7 @@
   color: rgb(0, 0, 0);
 }
 .dashboard-header{
+  margin-bottom: 3rem;
   div{
     margin-bottom: 0;
   }

@@ -768,15 +768,15 @@ section {
 .cart-item{
   width: 50%;
   margin: 0 auto;
-  border: 2px solid rgb(195, 195, 195);
+  // border: 2px solid rgb(195, 195, 195);
   padding: 0 1rem;
-  border-radius: 8px;
+  border-radius: 0.9rem;
   font-size: 1.3rem;
   @include flexBox;
   justify-content: space-between;
   background-color: white;
   color: black;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.171);
 }
 .item-price{
   color: black;
@@ -793,16 +793,16 @@ section {
   background-color: rgb(252, 252, 252);
 }
 .minus-cart{
-  border-top-left-radius: 8px;
-  border-bottom-left-radius: 8px;
+  border-top-left-radius: 7px;
+  border-bottom-left-radius: 7px;
 }
 .plus-cart{
-  border-top-right-radius: 8px;
-  border-bottom-right-radius: 8px;
+  border-top-right-radius: 7px;
+  border-bottom-right-radius: 7px;
 }
 .minus-cart , .plus-cart{
   padding: 0.25rem 0.5rem;
-  background-color: rgb(255, 218, 218);
+  background-color: rgb(242, 54, 54);
 }
 
 .bill{
@@ -811,9 +811,9 @@ section {
   margin: 0 auto;
   margin-top: 2rem;
   color: black;
-  border-radius: 8px;
+  border-radius: 0.9rem;
   background-color: white;
-  border: 1px solid rgb(255, 0, 0);
+  border: 1px solid rgb(255, 16, 16);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
 .total-bill{
@@ -821,7 +821,7 @@ section {
   font-weight: 500;
   display: flex;
   gap: 1rem;
-  border-bottom: 1px solid;
+  border-bottom: 2px solid rgb(216, 216, 216);
   margin-bottom: 1rem;
   padding-bottom: 0.5rem;
   font-family: "Montserrat",sans-serif;
@@ -834,13 +834,20 @@ section {
 }
 
 .pay-btn{
+  position: relative;
   font-family: "Montserrat",sans-serif;
   font-weight: 600;
   margin-top: 2rem;
+  border-radius: 0.8rem;
   color: white;
   background-color: green;
+  border: 0;
   box-shadow: 0 0 6px rgb(155, 155, 155,0.7);
-  padding: 0.8rem 2rem;
+  padding: 0.85rem 2.2rem;
+  transition: all 0.2s ease-in-out;
+}
+.pay-btn:hover{
+  transform: translateY(-5px);
 }
 
 .logout-icon{
@@ -881,39 +888,85 @@ section {
 .order-container{
   padding-bottom: 1.5rem;
 }
-.order-status{
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 0.5rem;
-}
-.status{
-  font-size: 1.5rem;
-  border-radius: 4px;
-  /* background-color: whitesmoke; */
-  text-shadow: 0 0px 4px rgba(101, 101, 101, 0.8);
-}
-.order-status span:nth-child(2){
-  color: rgb(0, 29, 102);
-  font-family: "Roboto",sans-serif;
-  font-size: 1.15rem;
-  font-weight: 500;
-}
+
 .orderDetail{
   width: 53%;
   background-color: white;
   color: black;
-  border-radius: 6px;
-  padding: 0.5rem 1.1rem;
+  border-radius: 0.9rem;
+  padding: 1.1rem 1.1rem;
   margin: 0 auto;
   text-align: start;
-  border: 2px solid rgb(158, 158, 158);
-  box-shadow: 0 4px 6px rgba(73, 73, 73, 0.1);
-  font-family: "Raleway",sans-serif;
+  box-shadow: 0 2px 10px rgba(57, 57, 57, 0.159);
+  // font-family: "Raleway",sans-serif;
+  font-family: "Roboto",sans-serif;
 }
+.order-status{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid rgb(240, 240, 240);
+  padding-bottom: 0.5rem;
+}
+.delivered, .processing{
+  padding: 0.2rem 0.6rem;
+  background-color: rgb(209, 209, 209);
+  border-radius: 1rem;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  letter-spacing: 0.5px;
+  .icon{
+    font-size: 10px;
+    border-radius: 50%;
+    font-weight: bold;
+  }
+}
+.delivered{
+  background: #e8f5e8;
+  color: #2d5a2d;
+  .icon{
+    background: #4caf50;
+    padding: 0.05rem 0.27rem;
+    color: white;
+  }
+}
+.processing{
+  background: #e3f2fd;
+  color: #1565c0;
+  .icon{
+    padding: 0.1rem;
+    background: #2196f3;
+  }
+}
+
+.order-status .date{
+  // color: rgb(0, 27, 96);
+  color: rgb(113, 100, 100);
+  letter-spacing: 0.5px;
+  font-family: "Quicksand",sans-serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+.order-items{
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  margin-bottom: 0.6rem;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+
+
+
+
 .itemDetail{
   @include flexBox;
   padding: 0 0.1rem;
-  font-size: 1.1rem;
+  font-size: 1.15rem;
+  color: rgb(79, 79, 79);
   justify-content: space-between;
 }
 .itemDetail .name{
@@ -924,15 +977,21 @@ section {
   /* font-size: 1.1rem; */
 }
 .priceQ{
+  display: inline-flex;
+  background-color: rgb(247, 247, 247);
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
   font-size: 1rem;
+  font-weight: 500;
 }
 .total-amount{
   display: flex;
   justify-content: space-between;
-  font-size: 1.15rem;
-  border-top: 2px solid rgb(189, 189, 189);
-  /* text-align: end; */
+  font-size: 1.2rem;
+  border-top: 2px solid rgb(232, 232, 232);
+  padding-top: 0.3rem;
   font-weight: 500;
+  color: rgb(45, 45, 45);
 }
 .total-amount span:nth-child(2){
   font-size: 1.25rem;
