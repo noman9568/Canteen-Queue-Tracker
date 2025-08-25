@@ -286,7 +286,7 @@
   object-position: center;
   height: 100%;
   width: 100%;
-  border-radius: 4px;
+  border-radius: 6px;
   transition: transform 0.5s;
 }
 
@@ -324,7 +324,7 @@
 
 .name {
   color: var(--text-dark);
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   font-weight: 600;
   margin: 0.4rem 0;
   font-family: "Quicksand", sans-serif;
@@ -341,7 +341,7 @@ section {
 }
 
 .price {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: 700;
   color: var(--text-dark);
 }
@@ -363,7 +363,7 @@ section {
   color: var(--primary-color);
   font-weight: 600;
   padding: 0.4rem 0rem;
-  border-radius: 8px;
+  border-radius: 10px;
   background-color: white;
   cursor: pointer;
   transition: all var(--transition-speed);
@@ -409,7 +409,7 @@ section {
   width: 100%;
   padding: 0;
   @include flexBox;
-  border-radius: 8px;
+  border-radius: 10px;
   border: 2px solid var(--primary-color);
   justify-content: space-between;
   overflow: hidden;
@@ -471,14 +471,14 @@ section {
 }
 .card-container {
   min-height: 18rem;
-  width: 9.8rem;
-  border-radius: 10px;
+  width: 9.7rem;
+  border-radius: 1rem;
   border: 1px solid #d7d7d7;
   display: flex;
   flex-direction: column;
   padding: 0.8rem;
   background-color: white;
-  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 1px 8px rgba(21, 21, 21, 0.103);
   transition: transform var(--transition-speed), box-shadow var(--transition-speed);
   // overflow: hidden;
   position: relative;
@@ -489,7 +489,7 @@ section {
 .load {
   position: absolute;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-40%);
   color: var(--primary-color);
   font-weight: 400;
 }
