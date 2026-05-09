@@ -85,25 +85,45 @@ exports.deleteQ = async (req,res) =>{
   }
 }
 
-exports.notify = async (req,res) =>{
-  const { title , body , token } = req.body;
-  // console.log(req.body);
+
+exports.notify = async (req, res) => {
+  const { title, body, token } = req.body;
+
   const message = {
-    notification : {
+    data: {
       title,
       body,
     },
-    token
+
+    webpush: {
+      notification: {
+        title,
+        body,
+        icon: "/icon1.png",
+        badge: "/icon1.png",
+      },
+    },
+
+    token,
   };
+
   try {
     const response = await admin.messaging().send(message);
-    console.log("Response from the notification -  " ,response);
-    res.status(200).json({ success: true, response });
+
+    // console.log("Response from notification - ", response);
+
+    res.status(200).json({
+      success: true,
+      response,
+    });
   } catch (error) {
     console.error("Notification error:", error);
-    res.status(500).json({ error: error.message });
+
+    res.status(500).json({
+      error: error.message,
+    });
   }
-}
+};
 
 
 

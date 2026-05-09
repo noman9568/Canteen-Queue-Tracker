@@ -16,7 +16,7 @@ const Dashboard = () => {
       setLoading(true);
       const response = await fetch(`${import.meta.env.VITE_API_URL}/api/queue/getQueue`);
       const temp = await response.json();
-      console.log(temp);
+      // console.log(temp);
       const data = temp.data;
       const prevId = prevQueueRef.current.map(item => item._id).sort();
       const newId = data.map(item => item._id).sort();

@@ -10,6 +10,8 @@ const AdminDashboard = () => {
   const [none,setNone] = useState(false);
   const [loading , setLoading] = useState(false);
   const [notifying,setNotifiying] = useState(false);
+  const [averageTime, setAverageTime] = useState(0);
+
   const getQueue = async () =>{
     setLoading(true);
     const response = await fetch(`${import.meta.env.VITE_API_URL}/api/queue/getQueue`);
@@ -39,20 +41,15 @@ const AdminDashboard = () => {
     })
     const tokens = await res.json();
     
-    // console.log(tokens);
-    // console.log("Updated values :", currentUser);
 
     await sendNotification(tokens[0]);
     const updatedQueue = d.map((item,index)=> (
       index===0 ? { ...item , status : "Completed"} : item
     ));
     
-    // setAmount(prev => prev + currentUser.orders.totalAmount); 
-    // setOrder(prev => prev + 1);
     setD(updatedQueue);
 
     setTimeout(async ()=>{
-      // console.log(currentUser.userId);
       const response = await fetch(`${import.meta.env.VITE_API_URL}/api/queue/delete`,{
         method : "POST",
         headers :{
@@ -73,12 +70,23 @@ const AdminDashboard = () => {
     socket.on("updatedQueue",(dataR)=>{
       setD(dataR)
       setNone(dataR.length>0);
-      // console.log(dataR);
     })
     return () => {
       socket.off("updatedQueue");
     };
   },[]);
+
+  useEffect(() =>{
+    socket.on(
+      "averageTimeUpdated",
+      (data) => {
+        setAverageTime(data.averageTime);
+      }
+    );
+    return () => {
+    socket.off("averageTimeUpdated");
+  };
+  }, []);
 
 
   const sendNotification = async (token) =>{
@@ -116,7 +124,7 @@ const AdminDashboard = () => {
           <div className="label">Completed Today</div>
         </div>
         <div className="s-item">
-          <div className="item-value">4.2</div>
+          <div className="item-value">{averageTime}</div>
           <div className="label">Avg Wait Time (min)</div>
         </div>
         <div className="s-item">

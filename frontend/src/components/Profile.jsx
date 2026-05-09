@@ -91,14 +91,13 @@ const Profile = () => {
   }
 
   const updateDetails = async () =>{
-    const response = await fetch(`${import.meta.env.VITE_API_URL}/api/user/update`,{
+    await fetch(`${import.meta.env.VITE_API_URL}/api/user/update`,{
       method : "POST",
       headers : {
         "Content-Type" : "application/json"
       },
       body : JSON.stringify({name:data.name , email : data.email , id : data._id})
     });
-    const res = await response.json();
     // console.log(res);
   }
 

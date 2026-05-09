@@ -35,18 +35,17 @@ const NotificationSetup = ({ children }) => {
   useEffect(() => {
     requestForToken(setTokenFound, setFcmToken);
 
-    onMessageListener()
-      .then((payload) => {
-        console.log("Foreground notification received:", payload);
-        const { title, body } = payload.notification;
-        if (Notification.permission === "granted" && isTokenFound) {
-          new Notification(title, { body });
-        }
-        
-        alert(`${title}\n${body}`);
-      })
-      .catch((err) => console.log("Failed to receive notification - ", err));
-  }, [isTokenFound]);
+    onMessageListener((payload) => {
+      // console.log("Foreground notification:", payload);
+
+      const title = payload.notification?.title;
+      const body = payload.notification?.body;
+
+      if (Notification.permission === "granted") {
+        new Notification(title, { body });
+      }
+    });
+  }, []);
 
 
   useEffect(() => {
@@ -57,6 +56,7 @@ const NotificationSetup = ({ children }) => {
 
   const sendToken = async (fcmtoken) => {
     try {
+      // console.log(fcmtoken);
       const response = await fetch(`${API_URL}/api/queue/saveToken`, {
         method: "POST",
         headers: {
@@ -65,7 +65,7 @@ const NotificationSetup = ({ children }) => {
         body: JSON.stringify({ token: fcmtoken, userId: decoded.userId }),
       });
       const result = await response.json();
-      console.log("Token saved:", result);
+      // console.log("Token saved:", result);
     } catch (error) {
       console.error("Error in saving the token: ", error);
     }

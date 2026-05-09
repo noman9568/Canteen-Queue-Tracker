@@ -27,6 +27,8 @@ exports.placeOrder = async (req,res) =>{
       totalAmount
     });
 
+    // console.log(order);
+
 
     const order = await razorpay.orders.create({
       amount : totalAmount*100,
@@ -48,18 +50,80 @@ exports.saveOrder = async (req,res) =>{
     const { token,response , orderAmount } = req.body;
     const decoded = jwt.decode(token);
     // console.log(decoded);
-    const order = await Receipt.create({
+    const receipt = await Receipt.create({
       userId : decoded.userId,
       payId: response.razorpay_payment_id,
       orderId : response.razorpay_order_id,
       totalAmount : orderAmount/100
     });
-    // console.log("order details - ",order);
-    res.status(200).json({message : "Order saved" , order});
+    
+    const order = await Order.findOne({userId: decoded.userId});
+    order.completedAt = new Date();
+    await order.save();
+
+    const startOfDay = new Date();
+    startOfDay.setHours(0, 0, 0, 0);
+
+    const result = await Order.aggregate([
+      {
+        $match: {
+          status: "Completed",
+          completedAt: {
+            $ne: null,
+            $gte: startOfDay,
+          },
+        },
+      },
+      {
+        $project: {
+          completionTime: {
+            $divide: [
+              {
+                $subtract: [
+                  "$completedAt",
+                  "$createdAt",
+                ],
+              },
+              1000 * 60,
+            ],
+          },
+        },
+      },
+      {
+        $group: {
+          _id: null,
+          averageTime: {
+            $avg: "$completionTime",
+          },
+          totalOrders: {
+            $sum: 1,
+          },
+        },
+      },
+    ]);
+
+    const stats = {
+      averageTime:
+        result[0]?.averageTime?.toFixed(2) || 0,
+      
+      totalOrders:
+        result[0]?.totalOrders || 0,
+    };
+
+    req.app.get("io").emit(
+      "averageTimeUpdated",
+      stats
+    );
+
+    res.status(200).json({success: "true" , stats});
 
   }
   catch(error) {
-    console.log("Error in saving the order - " , error);
+    console.log(error);
+
+    res.status(500).json({
+      error: error.message,
+    });
   }
 }
 

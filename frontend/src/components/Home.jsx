@@ -8,6 +8,7 @@ const Home = ({ setCartCount , id}) => {
 
   const [dData,setdata] = useState([]);
   const [load,setload] = useState(true);
+  const [dishQ, setDishQ] = useState(0);
   useEffect(() =>{
     // console.log(id)
     const fetchData = async ()=>{
@@ -28,7 +29,8 @@ const Home = ({ setCartCount , id}) => {
         });
         setload(false);
         setdata(updatedData);
-        // console.log(updatedData)
+        setDishQ(updatedData.length);
+        // console.log(dishQ);
       }
       catch(error) {
         console.log(error)
@@ -79,10 +81,10 @@ const Home = ({ setCartCount , id}) => {
       <div class="stats-grid">
         <div class="stat-item">
           <div class="stat-number">150+</div>
-          <div class="stat-label">Happy Customers Today</div>
+          <div class="stat-label">Happy Customers</div>
         </div>
         <div class="stat-item">
-          <div class="stat-number">25</div>
+          <div class="stat-number">{dishQ}</div>
           <div class="stat-label">Fresh Items Available</div>
         </div>
         <div class="stat-item">
@@ -90,7 +92,7 @@ const Home = ({ setCartCount , id}) => {
           <div class="stat-label">Avg Wait Time (min)</div>
         </div>
         <div class="stat-item">
-          <div class="stat-number">99%</div>
+          <div class="stat-number">95%</div>
           <div class="stat-label">Accuracy Rate</div>
         </div>
       </div>
