@@ -23,7 +23,7 @@
 }
 
 .top {
-  margin-top: 4rem;
+  margin-top: 3.5rem;
   .heading{
     font-size: 3.5rem;
     font-weight: 700;
@@ -41,23 +41,23 @@
 
 .icon-container{
   position: relative;
-  height: 300px;
-  max-width: 80%;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7));
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-  border-radius: 20px;
+  height: 250px;
+  max-width: 70%;
+  // background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7));
+  // box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
   padding: 1.5rem;
-  margin: 3rem auto;
+  margin: 2rem auto;
   margin-bottom: 4rem;
 }
 .queue-indicator{
   background-color: rgb(14, 182, 14);
   width: max-content;
   font-weight: 600;
-  font-size: 1.25rem;
+  font-size: 1.15rem;
   color: white;
   border-radius: 20px;
-  padding: 0.4rem 0.9rem;
+  padding: 0.35rem 0.8rem;
   margin-left: auto;
   span{
     display: inline-block;
@@ -124,19 +124,20 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  width: 100%;
+  width: 90%;
   height: 100%;
+  margin: 0 auto;
   // padding: 2rem;
 }
 .food-item{
-  width: 115px;
-  height: 115px;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 3.5rem;
-  animation: float 3s ease-in-out infinite;
+  animation: float 2s ease-in-out infinite;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
   position: relative;
 }
@@ -171,47 +172,58 @@
         transform: translateY(0px); 
     }
     50% { 
-        transform: translateY(-20px); 
+        transform: translateY(-35px); 
     }
 }
 
 .stats-bar {
-    background: rgba(255, 255, 255, 0.9);
-    backdrop-filter: blur(10px);
-    padding: 1.5rem 2rem;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    margin-left: auto;
-    margin-right: auto;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgb(107, 107, 107);
+  padding: 0 2rem;
+  margin: 0 auto;
+  width: 80%;
+  border-radius: 24px;
+  background-color: rgb(255, 255, 255);
 }
 
 .stats-grid {
   width: 100%;
-    display: flex;
-    gap: 2rem;
-    justify-content: space-around;
+  display: flex;
+  justify-content: space-around;
 }
 
-.stat-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.stat-item{
+  flex: 1;
+  text-align: center;
+  position: relative;
+  padding: 1.3rem 0;
 }
+.stat-item:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 1px;
+  background-color: rgb(107, 107, 107); /* light gray line */
+}
+
 
 .stat-number {
-    font-size: 2.2rem;
+    font-size: 1.9rem;
     font-weight: bold;
     color: #2563eb; /* blue highlight */
-    margin-bottom: 0.5rem;
+    margin-bottom: 0rem;
 }
 
 .stat-label {
   font-weight: 500;
-  font-size: 1.2rem;
+  font-size: 1.15rem;
   color: #64748B;
 }
 
 .highlight{
-  width: 90%;
+  width: 85%;
   margin: 5rem auto;
   display: flex;
   gap: 2rem;
@@ -227,25 +239,27 @@
   min-width: 280px;
   flex: 1 1 290px;
   max-width: 350px;
+  border: 1px solid grey;
 
   box-shadow: 0 0 10px rgba(52, 52, 52, 0.071);
   cursor: pointer;
-  transition: all 0.3s ease-in-out;
+  // transition: all 0.3s ease-in-out;
   .h-p{
-    margin-top: 1.5rem;
+    margin-top: 1.2rem;
   }
   span{
-    font-size: 1.4rem;
+    font-size: 1.3rem;
     font-weight: 700;
   }
   p{
     margin: 0;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     font-weight: 500;
   }
 }
 .h1:hover, .h2:hover, .h3:hover {
-  transform: scale(1.03);
+  // transform: scale(1.02);
+  border: 1px solid rgb(190, 92, 0);
 }
 .h-icon{
   // border: 1px solid;
@@ -526,12 +540,18 @@ section {
   }
   .icon-container{
     max-width: 85%;
+    .food-items{
+      width: 90%;
+    }
+  }
+  .stats-bar{
+    width: 85%;
   }
   .stat-number{
-    font-size: 2.1rem;
+    font-size: 1.8rem;
   }
   .stat-label{
-    font-size: 1.15rem;
+    font-size: 1.05rem;
   }
   .food-container{
     width: 96%;
@@ -592,11 +612,17 @@ section {
     padding-left: 1rem;
     padding-right: 1rem;
   }
+  .stats-bar{
+    width: 87%;
+  }
+  .stat-item{
+    padding: 1.1rem 0;
+  }
   .stat-number{
-    font-size: 1.8rem;
+    font-size: 1.7rem;
   }
   .stat-label{
-    font-size: 1rem;
+    font-size: 0.9rem;
   }
   .queue-indicator{
     font-size: 1.15rem;
@@ -665,12 +691,18 @@ section {
   .icon-container{
     height: 220px;
     max-width: 90%;
+    .food-items{
+      width: 95%;
+    }
+  }
+  .stat-item{
+    padding: 1rem 0;
   }
   .stat-number{
-    font-size: 1.7rem;
+    font-size: 1.5rem;
   }
   .stat-label{
-    font-size: 0.9rem;
+    font-size: 0.8rem;
   }
   .food-container{
     width: 95%;
@@ -693,16 +725,22 @@ section {
     width: 13px;
   }
   .highlight{
-    gap: 1rem;
-    width: 96%;
+    gap: 1.2rem;
+    // width: 96%;
+    flex-direction: column;
   }
   .h1, .h2, .h3{
     min-width: 210px;
-    max-width: 300px;
-    flex: 1 1 230px;
-    // span{
-    //   font-size: 1.2rem;
-    // }
+    max-width: 0;
+    // width: 90%;
+    max-width: none;
+    width: 90%;
+    flex: 0;
+    padding: 1.5rem 1rem;
+    text-align: start;
+    .h-p{
+      margin-top: 1rem;
+    }
     p{
       font-size: 1rem;
     }
@@ -710,6 +748,7 @@ section {
   .h-icon{
     font-size: 1.3rem;
     padding: 0.35rem 0.45rem;
+    margin-left: 0.5rem;
   }
 }
 @media (max-width:480px) {

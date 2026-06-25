@@ -1,5 +1,6 @@
 import './App.css';
 import "./styles/global.scss";
+// import "./styles/global.css";
 import NotificationSetup from "./components/NotificationSetup.jsx";
 import FloatingElements from './components/FloatingElements.jsx';
 

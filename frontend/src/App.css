@@ -11,10 +11,10 @@
 
 
 nav{
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
   position: sticky;
+  background: rgba(255, 255, 255, 0.797);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 2px 25px rgba(0, 0, 0, 0.15);
   top: 0;
   z-index: 100;
 
@@ -22,17 +22,24 @@ nav{
   display: flex;
   align-items: center;
   gap: 1.45rem;
-  font-size: 1.2rem;
+  font-size: 1.25rem;
   justify-content: space-between;
   padding: 1.1rem 1.6rem;
   font-family: "Montserrat",sans-serif;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 15px;
 }
 nav Logo{
   font-size: 2rem;
   font-weight: 600;
   display: flex;
   align-items: center;
+  /* border: 1px solid rgb(96, 96, 96); */
+  border-radius: 20px;
   gap: 1rem;
+  background: #e9f8ff;
+  padding-right: 0.5rem;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.3);
   span{
     color: rgb(5, 5, 219);
   }
